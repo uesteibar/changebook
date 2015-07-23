@@ -1,5 +1,29 @@
-<p>Welcome <%= @email %>!</p>
+<p class="text-center">Welcome to ChangeBook,
+  <%= @email %>!</p>
+
+<p>
+  We hope you will have a great time with us!
+</p>
 
 <p>You can confirm your account email through the link below:</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p>
+  <%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %>
+</p>
+
+<p>
+  For any questions, you can reach us at
+  <a href="mailto:changebookapp@gmail.com">changebookapp@gmail.com</a>.
+</p>
+
+<p>
+  We wish you a great reading time!
+</p>
+
+<p>
+  Regards,
+</p>
+
+<p>
+  ChangeBook team.
+</p>

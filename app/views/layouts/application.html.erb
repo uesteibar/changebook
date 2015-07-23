@@ -47,7 +47,10 @@
         </nav>
 
         <% flash.each do |key, value| %>
-        <%= content_tag :div, value, class: "text-center alert alert-#{key}" %>
+          <% if key == "alert" %>
+            <% key = "danger" %>
+          <% end %>
+          <%= content_tag :div, value, class: "text-center alert alert-#{key}" %>
         <% end %>
 
         <%= yield %>
