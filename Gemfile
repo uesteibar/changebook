@@ -32,6 +32,9 @@ gem 'devise', '3.5.1'
 # enviromental variables
 gem 'figaro'
 
+# heroku deployment
+gem 'rails_12factor'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
