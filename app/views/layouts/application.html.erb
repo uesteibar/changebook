@@ -1,14 +1,71 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Changebook</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Changebook</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
 
-<%= yield %>
+    <div class="wrap">
 
-</body>
+      <div class="container-fluid">
+        <nav class="navbar navbar-primary">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button aria-expanded="false" class="navbar-toggle collapsed" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/">
+                ChangeBook!
+              </a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+              <ul class="nav navbar-nav navbar-right">
+                <% if current_user %>
+                <li>
+                  <%= link_to 'Log out', destroy_user_session_path, :method => :delete %>
+                </li>
+                <% else %>
+                <li>
+                  <%= link_to "Log in", "/login" %>
+                </li>
+                <li>
+                  <%= link_to "Sign up", "/signup" %>
+                </li>
+                <% end %>
+              </ul>
+
+            </div>
+          </div>
+        </nav>
+
+        <% flash.each do |key, value| %>
+          <% if key == "alert" %>
+            <% key = "danger" %>
+          <% end %>
+          <%= content_tag :div, value, class: "text-center alert alert-#{key}" %>
+        <% end %>
+
+        <%= yield %>
+
+      </div>
+
+      <div class="push"></div>
+    </div>
+
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+          <p class="text-center">Welcome to ChangeBook! by uesteibar @ ironhack. 2015.</p>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
