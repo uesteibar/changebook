@@ -8,7 +8,37 @@
 </head>
 <body>
 
-<%= yield %>
+  <div class="wrap">
 
+      <div class="container-fluid">
+        <nav class="navbar navbar-primary">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="/">
+              ChangeBook!
+            </a>
+            </div>
+
+          </div>
+        </nav>
+
+        <% flash.each do |key, value| %>
+          <%= content_tag :div, value, class: "text-center alert alert-#{key}" %>
+        <% end %>
+
+        <%= yield %>
+
+      </div>
+
+      <div class="push"></div>
+    </div>
+
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+          <p class="text-center">Welcome to ChangeBook! by uesteibar @ ironhack. 2015.</p>
+        </div>
+      </div>
+    </div>
 </body>
 </html>
