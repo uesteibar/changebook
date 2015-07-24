@@ -13,7 +13,6 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.assign_attributes(user_params)
-    debugger
     if @user.valid?
       @user.save
       render status: 200, json: @user
