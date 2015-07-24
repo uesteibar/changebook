@@ -8,13 +8,16 @@
       <%= f.text_area :bio, class: "form-control" %>
     </div>
 
+    <%= f.text_field :latitude %>
+    <%= f.text_field :longitude %>
+
     <div class="form-group">
       <%= f.label :location %><br/>
-      <input id="gmaps-autocomplete" type="text" name="location" value="" class="form-control">
+      <input class="form-control" id="gmaps-autocomplete" name="location" type="text" value="">
     </div>
 
     <div class="form-group">
-      <%= f.submit "Update", class: "btn btn-primary btn-block" %>
+      <%= f.submit "Update", data: @user.id, class: "btn btn-primary btn-block", id: "submit-profile-edit" %>
     </div>
     <% end %>
 
