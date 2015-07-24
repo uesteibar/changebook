@@ -5,6 +5,6 @@ Rails.application.routes.draw do
 
   get "/" => "home#index"
 
-  resources :users, only: [:show]
+  resources :users, only: [:show, :edit, :update]
 
 end
