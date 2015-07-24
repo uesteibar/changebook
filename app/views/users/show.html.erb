@@ -1,7 +1,13 @@
 <div class="row">
-  <div class="col-md-8 col-md-offset-2">
-    <div class="user-header">
-      <h1 class="text-center"><%= @user.username %></h1>
+  <div class="col-md-5 col-md-offset-1">
+    <div class="card card--user">
+      <div class="user-header">
+        <h1 class="text-center"><%= @user.username %></h1>
+      </div>
+
+      <p class="lead text-center">
+        <%= @user.bio %>
+      </p>
     </div>
   </div>
 </div>
