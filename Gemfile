@@ -35,6 +35,9 @@ gem 'figaro'
 # heroku deployment
 gem 'rails_12factor'
 
+# geolocation
+gem 'geocoder'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

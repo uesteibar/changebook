@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
+  reverse_geocoded_by :latitude, :longitude, :address => :location
+  before_save :reverse_geocode
+
   validates_presence_of :username
   validates_uniqueness_of :username
 
