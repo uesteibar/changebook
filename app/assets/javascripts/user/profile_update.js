@@ -39,8 +39,6 @@ function initialize() {
 
           params.latitude = location.latitude;
           params.longitude = location.longitude;
-        } else {
-          alert("Geocode was not successful for the following reason: " + status);
         }
       });
     }
@@ -60,7 +58,3 @@ function initialize() {
     });
   }
 }
-
-$(document).ready(function() {
-  google.maps.event.addDomListener(window, 'load', initialize);
-});
