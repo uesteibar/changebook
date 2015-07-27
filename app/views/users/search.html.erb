@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 margin-top">
+
+    <% @users.each do |user| %>
+    <div class="card search--card">
+
+      <div class="card--thumbnail">
+        <%= image_tag user.avatar.url(:square), class: "img-responsive center-block" %>
+      </div>
+
+      <div>
+        <h3><%= link_to "@#{user.username}", "/users/#{user.id}" %></h3>
+        <p>
+          <span aria-hidden="true" class="glyphicon glyphicon-map-marker"></span>
+          <%= user.location %>
+        </p>
+      </div>
+    </div>
+    <% end %>
+
+  </div>
+</div>
