@@ -22,7 +22,7 @@ function initialize() {
       user: {
         latitude: location.latitude,
         longitude: location.longitude,
-        bio: $('#user_bio').val()
+        bio: $('#user_bio').val(),
         avatar: $('#avatar').val()
       }
     };
