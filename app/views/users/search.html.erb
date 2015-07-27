@@ -9,7 +9,7 @@
       </div>
 
       <div>
-        <h3><%= link_to "@#{user.username}", "/users/#{user.id}" %></h3>
+        <h3><%= link_to "#{user.username}", user_path(user) %></h3>
         <p>
           <span aria-hidden="true" class="glyphicon glyphicon-map-marker"></span>
           <%= user.location %>
