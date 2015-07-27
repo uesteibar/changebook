@@ -2,20 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Following, type: :model do
   before(:each) do
-    @uesteibar = User.create(
-      username: 'uesteibar',
-      email: 'uesteibar@live.com',
-      password: 'uesteibar',
-      password_confirmation: 'uesteibar'
-    )
+    @uesteibar = create(:uesteibar)
     @uesteibar.confirm!
 
-    @alaine = User.create(
-      username: 'alaine',
-      email: 'alaine@live.com',
-      password: 'alaine',
-      password_confirmation: 'alaine'
-    )
+    @alaine = create(:alaine)
     @alaine.confirm!
   end
 
