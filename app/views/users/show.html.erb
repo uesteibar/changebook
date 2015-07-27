@@ -4,7 +4,9 @@
       <div class="user-header">
         <h1 class="text-center"><%= @user.username %></h1>
       </div>
-      
+
+      <%= image_tag @user.avatar.url(:square) %>
+
       <p class="text-center">
         <%= @user.location %>
       </p>

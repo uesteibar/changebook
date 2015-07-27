@@ -23,6 +23,7 @@ function initialize() {
         latitude: location.latitude,
         longitude: location.longitude,
         bio: $('#user_bio').val()
+        avatar: $('#avatar').val()
       }
     };
     if (!location.latitude) {
