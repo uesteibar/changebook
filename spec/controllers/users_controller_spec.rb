@@ -73,5 +73,49 @@ RSpec.describe UsersController, type: :controller do
         end
       end
     end
+
+    describe 'GET #search' do
+      before(:each) do
+        @alaine = User.create(
+          username: 'alaine',
+          email: 'alaine@live.com',
+          password: 'alaine',
+          password_confirmation: 'alaine'
+        )
+        @alaine.confirm!
+
+        @alen = User.create(
+          username: 'alenesteibar',
+          email: 'alenesteibar@live.com',
+          password: 'alen',
+          password_confirmation: 'alen'
+        )
+        @alen.confirm!
+      end
+
+      context 'when the user is logged in' do
+        it 'responds successfully with an HTTP 200 status code' do
+          get :search, term: "est"
+          expect(response).to be_success
+          expect(response.code.to_i).to eq(200)
+        end
+
+        it 'returns a json with the matching users' do
+          get :search, term: "est"
+          # expect(response.body).to eq [@user, @alen].to_json
+        end
+      end
+
+      context 'when the user is not logged in' do
+        before(:each) do
+          sign_out @user
+        end
+
+        it 'redirects to root' do
+          get :search, term: "est"
+          expect(response).to redirect_to('/login')
+        end
+      end
+    end
   end
 end

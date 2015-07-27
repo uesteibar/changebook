@@ -11,4 +11,14 @@
       margin-bottom: 3rem;
     }
   }
+
+  > .card--thumbnail {
+    position: relative;
+    float: left;
+    margin-right: 2rem;
+    > img {
+      height: 8rem;
+      margin-top: 1rem;
+    }
+  }
 }
