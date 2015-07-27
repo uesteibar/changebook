@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
   def search
     @users = User.where("username LIKE ?", "%#{params[:term]}%")
-    render status: 200, json: @users
+    render :search
   end
 
   private

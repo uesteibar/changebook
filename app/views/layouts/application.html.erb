@@ -31,9 +31,9 @@
 
               <ul class="nav navbar-nav navbar-right">
                 <% if current_user %>
-                <form class="navbar-form navbar-left" role="search">
+                <form class="navbar-form navbar-left" method="GET" action="/users/search">
                   <div class="form-group">
-                    <input id="user-search" class="form-control" placeholder="Search..." type="text">
+                    <input id="user-search" name="term" class="form-control" placeholder="Search..." type="text">
                   </div>
                 </form>
                 <li class="dropdown">
