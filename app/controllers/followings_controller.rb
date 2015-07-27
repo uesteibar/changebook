@@ -3,11 +3,11 @@ class FollowingsController < ApplicationController
 
   def create
     current_user.follow(User.find(params[:id]))
-    render status: 201, json: "created"
+    render status: 201, body: "created"
   end
 
   def destroy
     current_user.unfollow(User.find(params[:id]))
-    render status: 200, json: "destroyed"
+    render status: 200, body: "destroyed"
   end
 end
