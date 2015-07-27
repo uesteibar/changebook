@@ -2,18 +2,23 @@
   <div class="col-md-5 col-md-offset-1">
     <div class="card card--user">
       <div class="user-header">
-        <h1 class="text-center"><%= @user.username %></h1>
+        <h1 class="text-center">@<%= @user.username %></h1>
       </div>
 
-      <%= image_tag @user.avatar.url(:square) %>
+      <div>
+        <%= image_tag @user.avatar.url(:square), class: "img-responsive center-block img-circle" %>
+      </div>
 
-      <p class="text-center">
-        <%= @user.location %>
-      </p>
+      <div class="user-content">
+        <p class="text-center user-location">
+          <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+          <%= @user.location %>
+        </p>
 
-      <p class="lead text-center">
-        <%= @user.bio %>
-      </p>
+        <p class="lead text-center">
+          <%= @user.bio %>
+        </p>
+      </div>
 
     </div>
   </div>
