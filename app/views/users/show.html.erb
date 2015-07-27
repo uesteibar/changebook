@@ -2,7 +2,14 @@
   <div class="col-md-5 col-md-offset-1">
     <div class="card card--user">
       <div class="user-header">
-        <h1 class="text-center">@<%= @user.username %></h1>
+        <h1 class="text-center"><%= @user.username %>
+          <% if @following %>
+            <button class="btn btn-primary" data-id="<%= @user.id %>" id="unfollow-user" name="button" type="button">Unfollow</button>
+          <% else %>
+            <button class="btn btn-primary" data-id="<%= @user.id %>" id="follow-user" name="button" type="button">Follow</button>
+          <% end %>
+        </h1>
+
       </div>
 
       <div>
@@ -11,7 +18,7 @@
 
       <div class="user-content">
         <p class="text-center user-location">
-          <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+          <span aria-hidden="true" class="glyphicon glyphicon-map-marker"></span>
           <%= @user.location %>
         </p>
 
@@ -23,3 +30,9 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+  profile_show_initialize();
+});
+</script>
