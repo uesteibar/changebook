@@ -9,8 +9,8 @@
         <%= f.text_area :bio, rows: "6", class: "form-control" %>
       </div>
 
-      <%= f.hidden_field :latitude %>
-      <%= f.hidden_field :longitude %>
+      <%= f.text_field :latitude, id: "latitude" %>
+      <%= f.text_field :longitude, id: "longitude" %>
 
       <div class="form-group">
         <%= f.label :location %><br/>
