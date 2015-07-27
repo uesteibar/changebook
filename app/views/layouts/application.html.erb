@@ -73,12 +73,7 @@
           </div>
         </nav>
 
-        <% flash.each do |key, value| %>
-        <% if key == "alert" %>
-        <% key = "danger" %>
-        <% end %>
-        <%= content_tag :div, value, class: "text-center alert alert-#{key}" %>
-        <% end %>
+        <%= render 'layouts/flashes'  %>
 
         <%= yield %>
 
