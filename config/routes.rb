@@ -7,4 +7,6 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :edit, :update]
 
+  get "/users/search" => "users#search"
+
 end
