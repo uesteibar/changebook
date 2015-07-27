@@ -1,4 +1,4 @@
-function initialize() {
+function profile_update_initialize() {
   var location = {};
   var input = document.getElementById('gmaps-autocomplete');
   var autocomplete = new google.maps.places.Autocomplete(input, function(location) {

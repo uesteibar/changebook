@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :authorize_user, only: [:edit, :update] # TODO - cambia esto mangarran
+  before_action :authorize_user, only: [:edit, :update]
 
   def show
     @user = User.find(params[:id])

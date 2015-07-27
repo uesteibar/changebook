@@ -9,8 +9,8 @@
         <%= f.text_area :bio, rows: "6", class: "form-control" %>
       </div>
 
-      <%= f.text_field :latitude, id: "latitude" %>
-      <%= f.text_field :longitude, id: "longitude" %>
+      <%= f.hidden_field :latitude, id: "latitude" %>
+      <%= f.hidden_field :longitude, id: "longitude" %>
 
       <div class="form-group">
         <%= f.label :location %><br/>
@@ -34,6 +34,6 @@
 
 <script type="text/javascript">
   $(document).ready(function () {
-    initialize();
+    profile_update_initialize();
   });
 </script>
