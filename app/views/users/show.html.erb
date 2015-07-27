@@ -2,7 +2,7 @@
   <div class="col-md-5 col-md-offset-1">
     <div class="card card--user">
       <div class="user-header">
-        <h1 class="text-center">@<%= @user.username %>
+        <h1 class="text-center"><%= @user.username %>
           <% if @following %>
             <button class="btn btn-primary" data-id="<%= @user.id %>" id="unfollow-user" name="button" type="button">Unfollow</button>
           <% else %>

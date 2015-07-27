@@ -2,21 +2,11 @@ require 'rails_helper'
 
 RSpec.describe FollowingsController, type: :controller do
   before(:each) do
-    @uesteibar = User.create(
-      username: 'uesteibar',
-      email: 'uesteibar@live.com',
-      password: 'uesteibar',
-      password_confirmation: 'uesteibar'
-    )
+    @uesteibar = create(:uesteibar)
     @uesteibar.confirm!
     sign_in @uesteibar
 
-    @alaine = User.create(
-      username: 'alaine',
-      email: 'alaine@live.com',
-      password: 'alaine',
-      password_confirmation: 'alaine'
-    )
+    @alaine = create(:alaine)
     @alaine.confirm!
   end
 
