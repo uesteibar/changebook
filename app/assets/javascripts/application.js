@@ -18,4 +18,5 @@
 //= require_tree .
 
 window.bookPredictor = require('./book/book-predictor');
-console.log(window.bookPredictor);
+window.bookOwnershipManager = require('./book/book-ownership-manager');
+window.bookNewManager = require('./book/book-new-manager');

@@ -1,7 +1,5 @@
 var BookRetriever = require('./book-retriever');
 
-var bookId = -1;
-
 var BookPredictor = function(bookRetriever) {
   this.bookRetriever = bookRetriever;
   this.books
@@ -47,42 +45,6 @@ BookPredictor.prototype.init = function(selector) {
     bookId = event.target.dataset.id;
     $('#new-offering').modal('show');
   });
-
-  $('#search-results').on('click', '#new-book', function(event) {
-    event.preventDefault();
-    $('#create-book').modal('show');
-  });
-
-  $('#new-offer').on('submit', function(event) {
-    event.preventDefault();
-    inputs = $(event.target).serializeArray();
-    var params = {
-      book_id: bookId
-    };
-
-    inputs.forEach(function(input) {
-      if (input.name == 'to-give-away') {
-        params.to_give_away = true;
-      } else if (input.name == 'to-exchange') {
-        params.to_exchange = true;
-      }
-    });
-
-    var request = $.post('/ownerships', {
-      ownership: params
-    });
-    request.always(function(res) {
-      window.location.reload();
-    });
-  });
-
-  $('body').on('submit', '.new-book', function(event) {
-    event.preventDefault();
-    $('#create-book').modal('hide');
-    $('body').removeClass('modal-open');
-    $('.modal-backdrop').remove();
-  });
-
 };
 
 module.exports = new BookPredictor(new BookRetriever);
