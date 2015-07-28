@@ -9,10 +9,17 @@ Rails.application.routes.draw do
     collection do
       get "search"
     end
-    resources :books, only: [:new, :create, :destroy]
+    resources :ownerships, only: [:destroy]
   end
 
-  get "/books/search", to: "books#search"
+  resources :ownerships, only: [:create]
+
+  resources :books, only: [:new, :create]
+
+
+  get "/api/books", to: "books#all"
+  get "/api/books/:id", to: "books#one"
+  get "/api/books/search/:term", to: "books#search"
 
   post "/users/:id/follow", to: "followings#create"
   delete "/users/:id/unfollow", to: "followings#destroy"

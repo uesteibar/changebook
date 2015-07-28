@@ -12,6 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require bootstrap-sprockets
+//= require twitter/typeahead.min
+//= require handlebars
 //= require_tree .
+
+window.bookPredictor = require('./book/book-predictor');
+window.bookOwnershipManager = require('./book/book-ownership-manager');
+window.bookNewManager = require('./book/book-new-manager');

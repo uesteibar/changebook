@@ -9,6 +9,10 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
+gem "browserify-rails"
+
+gem 'handlebars_assets'
+
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -43,6 +47,9 @@ gem 'aws-sdk', '< 2.0'
 
 # books info
 gem 'openlibrary'
+
+# predictive search
+gem 'twitter-typeahead-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

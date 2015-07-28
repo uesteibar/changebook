@@ -8,7 +8,8 @@ class User < ActiveRecord::Base
   }
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\z/
 
-  has_many :books
+  has_many :ownerships
+  has_many :books, through: :ownerships
 
   has_many :active_relationships, class_name:  "Following", foreign_key: "follower_id", dependent: :destroy
   has_many :passive_relationships, class_name:  "Following", foreign_key: "followed_id", dependent: :destroy
@@ -35,6 +36,14 @@ class User < ActiveRecord::Base
 
   def following?(user)
     following.include?(user)
+  end
+
+  def owns?(book)
+    books.include?(book)
+  end
+
+  def self.search_by_username(term)
+    where("username LIKE ?", "%#{term}%")
   end
 
 end
