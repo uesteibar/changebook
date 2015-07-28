@@ -9,7 +9,7 @@
           </p>
         </div>
         <div class="col-xs-4">
-          <% if current_user.id == book.id %>
+          <% if current_user.id != book.user.id %>
             <a href="" type="button" name="button" class="btn btn-primary">I want it!</a>
           <% else %>
             <%= form_for [book.user, book], method: :delete do |f| %>
