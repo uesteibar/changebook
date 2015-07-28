@@ -6,16 +6,13 @@ class BooksController < ApplicationController
   end
 
   def create
-    book = OpenlibraryClient.new.search_book(book_params[:title])
-    book.assign_attributes(to_give_away: book_params[:to_give_away], to_exchange: book_params[:to_exchange])
-    book.save
-    current_user.books << book
+    current_user.books.create(book_params)
     redirect_to user_path(current_user)
   end
 
   private
 
   def book_params
-    params.require(:book).permit(:title, :to_give_away, :to_exchange)
+    params.require(:book).permit(:title, :author, :cover, :to_give_away, :to_exchange)
   end
 end

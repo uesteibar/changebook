@@ -12,6 +12,13 @@
     }
   }
 
+  &.card--books {
+    button {
+      width: 100%;
+      margin-top: 1rem;
+    }
+  }
+
   > .card--thumbnail {
     position: relative;
     float: left;

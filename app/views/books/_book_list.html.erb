@@ -1,0 +1,27 @@
+<div class="card card--books">
+  <% if books.any? %>
+    <% books.each_with_index do |book, index| %>
+      <div class="card--books--item row">
+        <div class="col-xs-8">
+          <h3><%= book.title.titleize %></h3>
+          <p>
+            by <%= book.author.titleize %>
+          </p>
+        </div>
+        <div class="col-xs-4">
+          <% if current_user.id == book.id %>
+            <button type="button" name="button" class="btn btn-primary">I want it!</button>
+          <% else %>
+            <button type="button" name="button" class="btn btn-danger">Delete</button>
+          <% end %>
+          <button type="button" name="button" class="btn btn-primary">Recommend!</button>
+        </div>
+      </div>
+      <% if books.size > index + 1 %>
+        <hr>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p class="lead text-center">No books offered yet!</p>
+  <% end %>
+</div>

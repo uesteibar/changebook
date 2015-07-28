@@ -3,7 +3,7 @@ class OpenlibraryClient
     client = Openlibrary::Client.new
     results = client.search(search_params)
 
-    normalize_book(results)
+    results.any? ? normalize_book(results) : nil
   end
 
   private
