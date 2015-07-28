@@ -1,0 +1,33 @@
+<div class="card card--books">
+  <% if ownerships.any? %>
+    <% ownerships.each_with_index do |ownership, index| %>
+      <div class="card--books--item row">
+        <div class="col-xs-3">
+          <%= image_tag ownership.book.cover.url(:medium), class: "img-responsive center-block" %>
+        </div>
+        <div class="col-xs-5">
+          <h3><%= ownership.book.title.titleize %></h3>
+          <p>
+            by
+            <%= ownership.book.author.titleize %>
+          </p>
+        </div>
+        <div class="col-xs-4">
+          <% if current_user.owns?(ownership.book) %>
+            <%= form_for [current_user, ownership], method: :delete do |f| %>
+              <%= f.submit value: "Delete", class: "btn btn-danger" %>
+            <% end %>
+          <% else %>
+            <a class="btn btn-primary" href="" name="button" type="button">I want it!</a>
+          <% end %>
+          <a class="btn btn-primary" name="button" type="button">Recommend!</a>
+        </div>
+      </div>
+      <% if ownerships.size > index + 1 %>
+        <hr>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p class="lead text-center">No books offered yet!</p>
+  <% end %>
+</div>

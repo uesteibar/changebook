@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150728133611) do
+ActiveRecord::Schema.define(version: 20150728150035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,9 +19,6 @@ ActiveRecord::Schema.define(version: 20150728133611) do
   create_table "books", force: :cascade do |t|
     t.string   "title"
     t.string   "author"
-    t.boolean  "to_give_away"
-    t.boolean  "to_exchange"
-    t.integer  "user_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "cover_file_name"
@@ -29,8 +26,6 @@ ActiveRecord::Schema.define(version: 20150728133611) do
     t.integer  "cover_file_size"
     t.datetime "cover_updated_at"
   end
-
-  add_index "books", ["user_id"], name: "index_books_on_user_id", using: :btree
 
   create_table "followings", force: :cascade do |t|
     t.integer  "follower_id", null: false
@@ -42,6 +37,15 @@ ActiveRecord::Schema.define(version: 20150728133611) do
   add_index "followings", ["followed_id"], name: "index_followings_on_followed_id", using: :btree
   add_index "followings", ["follower_id", "followed_id"], name: "index_followings_on_follower_id_and_followed_id", unique: true, using: :btree
   add_index "followings", ["follower_id"], name: "index_followings_on_follower_id", using: :btree
+
+  create_table "ownerships", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "book_id"
+    t.boolean  "to_give_away"
+    t.boolean  "to_exchange"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
