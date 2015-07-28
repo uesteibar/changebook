@@ -9,8 +9,11 @@ Rails.application.routes.draw do
     collection do
       get "search"
     end
-    resources :books, only: [:new, :create, :destroy]
   end
+
+  resources :books, only: [:new, :create]
+
+  resources :ownerships, only: [:create, :destroy]
 
   get "/api/books", to: "books#all"
   get "/api/books/:id", to: "books#one"

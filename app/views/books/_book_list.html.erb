@@ -10,11 +10,11 @@
         </div>
         <div class="col-xs-4">
           <% if current_user.owns?(book) %>
-            <a href="" type="button" name="button" class="btn btn-primary">I want it!</a>
-          <% else %>
-            <%= form_for [book.user, book], method: :delete do |f| %>
+            <%= form_for 'book.ownerships', method: :delete do |f| %>
               <%= f.submit value: "Delete", class: "btn btn-danger" %>
               <% end %>
+          <% else %>
+            <a href="" type="button" name="button" class="btn btn-primary">I want it!</a>
             <% end %>
           <a type="button" name="button" class="btn btn-primary">Recommend!</a>
         </div>
