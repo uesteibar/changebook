@@ -3,10 +3,12 @@
     <div class="card card--user">
       <div class="user-header">
         <h1 class="text-center"><%= @user.username %>
-          <% if @following %>
-            <button class="btn btn-primary" data-id="<%= @user.id %>" id="unfollow-user" name="button" type="button">Unfollow</button>
-          <% else %>
-            <button class="btn btn-primary" data-id="<%= @user.id %>" id="follow-user" name="button" type="button">Follow</button>
+          <% if @user.id != current_user.id %>
+            <% if @following %>
+              <button class="btn btn-primary" data-id="<%= @user.id %>" id="unfollow-user" name="button" type="button">Unfollow</button>
+            <% else %>
+              <button class="btn btn-primary" data-id="<%= @user.id %>" id="follow-user" name="button" type="button">Follow</button>
+            <% end %>
           <% end %>
         </h1>
 
@@ -29,10 +31,13 @@
 
     </div>
   </div>
+  <div class="col-md-5">
+    <%= render "books/book_list", books: @user.books %>
+  </div>
 </div>
 
 <script type="text/javascript">
-$(document).ready(function () {
-  profile_show_initialize();
-});
+  $(document).ready(function () {
+    profile_show_initialize();
+  });
 </script>

@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
     square: '200x200#',
     medium: '300x300>'
   }
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\z/
+
+  has_many :books
 
   has_many :active_relationships, class_name:  "Following", foreign_key: "follower_id", dependent: :destroy
   has_many :passive_relationships, class_name:  "Following", foreign_key: "followed_id", dependent: :destroy
@@ -21,7 +24,6 @@ class User < ActiveRecord::Base
 
   validates_presence_of :username
   validates_uniqueness_of :username
-  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\z/
 
   def follow(user)
     active_relationships.create(followed_id: user.id)

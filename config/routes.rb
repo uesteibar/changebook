@@ -9,9 +9,12 @@ Rails.application.routes.draw do
     collection do
       get "search"
     end
+    resources :books, only: [:new, :create, :destroy]
   end
 
-  post "/users/:id/follow" => "followings#create"
-  delete "/users/:id/unfollow" => "followings#destroy"
+  get "/books/search", to: "books#search"
+
+  post "/users/:id/follow", to: "followings#create"
+  delete "/users/:id/unfollow", to: "followings#destroy"
 
 end
