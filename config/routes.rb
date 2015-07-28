@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     collection do
       get "search"
     end
-    resources :books, only: [:new, :create]
+    resources :books, only: [:new, :create, :destroy]
   end
 
   get "/books/search", to: "books#search"

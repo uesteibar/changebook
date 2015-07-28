@@ -10,11 +10,13 @@
         </div>
         <div class="col-xs-4">
           <% if current_user.id == book.id %>
-            <button type="button" name="button" class="btn btn-primary">I want it!</button>
+            <a href="" type="button" name="button" class="btn btn-primary">I want it!</a>
           <% else %>
-            <button type="button" name="button" class="btn btn-danger">Delete</button>
-          <% end %>
-          <button type="button" name="button" class="btn btn-primary">Recommend!</button>
+            <%= form_for [book.user, book], method: :delete do |f| %>
+              <%= f.submit value: "Delete", class: "btn btn-danger" %>
+              <% end %>
+            <% end %>
+          <a type="button" name="button" class="btn btn-primary">Recommend!</a>
         </div>
       </div>
       <% if books.size > index + 1 %>

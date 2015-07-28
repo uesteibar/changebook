@@ -10,6 +10,12 @@ class BooksController < ApplicationController
     redirect_to user_path(current_user)
   end
 
+  def destroy
+    book = current_user.books.find(params[:id])
+    book.destroy
+    redirect_to user_path(current_user)
+  end
+
   private
 
   def book_params
