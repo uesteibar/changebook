@@ -16,9 +16,14 @@ class BooksController < ApplicationController
     redirect_to user_path(current_user)
   end
 
-  def all_titles
+  def all
     books = Book.all
     render status: 200, json: books
+  end
+
+  def one
+    book = Book.find(params[:id])
+    render status: 200, json: book
   end
 
   def search

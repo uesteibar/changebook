@@ -38,4 +38,8 @@ class User < ActiveRecord::Base
     following.include?(user)
   end
 
+  def owns?(book)
+    books.include?(book)
+  end
+
 end

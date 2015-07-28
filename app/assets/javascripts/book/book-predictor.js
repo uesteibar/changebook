@@ -1,5 +1,7 @@
 var BookRetriever = require('./book-retriever');
 
+var bookId = -1;
+
 var BookPredictor = function(bookRetriever) {
   this.bookRetriever = bookRetriever;
 };
@@ -21,18 +23,42 @@ BookPredictor.prototype.init = function(selector) {
     });
 
     input.bind('typeahead:select', function(ev, suggestion) {
-      var searchHtml = HandlebarsTemplates['books/search-results']({books: [suggestion]});
+      var searchHtml = HandlebarsTemplates['books/search-results']({
+        books: [suggestion]
+      });
       $('#search-results').html(searchHtml);
     });
   });
 
   $('#book-search').on('submit', function(event) {
     event.preventDefault();
-    this.bookRetriever.search($(selector).val(), function(books){
-      var searchHtml = HandlebarsTemplates['books/search-results']({books: books});
+    this.bookRetriever.search($(selector).val(), function(books) {
+      var searchHtml = HandlebarsTemplates['books/search-results']({
+        books: books
+      });
       $('#search-results').html(searchHtml);
     });
   }.bind(this));
+
+  $('#search-results').on('click', '.select', function(event) {
+    event.preventDefault();
+    bookId = event.target.dataset.id;
+  });
+
+  $('#search-results').on('click', '#new-book', function(event) {
+    event.preventDefault();
+    // var newBookHtml = HandlebarsTemplates['books/new-book']();
+    $('.modal').modal('show');
+  });
+
+  $('body').on('submit', '.new-book', function(event) {
+    event.preventDefault();
+    console.log($(event.target).serializeArray());
+    $('.modal').modal('hide');
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
+  });
+
 };
 
 module.exports = new BookPredictor(new BookRetriever);

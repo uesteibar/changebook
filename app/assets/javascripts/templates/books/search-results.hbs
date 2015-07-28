@@ -1,15 +1,20 @@
 <div class="card card--books">
   <div class="card--books--item row">
     {{#each books}}
-      <div class="col-xs-8">
-        <h3>{{title}}</h3>
-        <p>
-          {{author}}
-        </p>
+      <div class="row">
+        <div class="col-xs-8">
+          <h3>{{title}}</h3>
+          <p>
+            {{author}}
+          </p>
+        </div>
+        <div class="col-xs-4">
+          <a data-id="{{id}}" type="button" name="button" class="btn btn-primary select">Select</a>
+        </div>
       </div>
-      <div class="col-xs-4">
-        <a type="button" name="button" class="btn btn-primary">Select</a>
-      </div>
+    {{else}}
+      <p class="lead text-center">We dont have that book, do you want to add it?</p>
+      <button type="button" name="new-book" id="new-book" class="btn btn-primary">Add new book</button>
     {{/each}}
   </div>
 </div>
