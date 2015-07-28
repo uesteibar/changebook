@@ -71,8 +71,8 @@ BookPredictor.prototype.init = function(selector) {
     var request = $.post('/ownerships', {
       ownership: params
     });
-    request.done(function(res) {
-      window.location.path = '/';
+    request.always(function(res) {
+      window.location.reload();
     });
   });
 
