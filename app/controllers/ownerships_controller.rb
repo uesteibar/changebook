@@ -1,6 +1,5 @@
 class OwnershipsController < ApplicationController
   def create
-    debugger
     current_user.ownerships.create(ownership_params)
     render status: 201, json: user_path(current_user)
   end

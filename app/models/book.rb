@@ -5,7 +5,7 @@ class Book < ActiveRecord::Base
   has_attached_file :cover, styles: {
     thumb: '100x100>',
     square: '200x200#',
-    medium: '300x300>'
+    medium: '500x500>'
   }
   validates_attachment_content_type :cover, :content_type => /\Aimage\/.*\z/
 
