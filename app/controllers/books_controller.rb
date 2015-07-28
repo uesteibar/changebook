@@ -21,7 +21,7 @@ class BooksController < ApplicationController
   end
 
   def search
-    books = Book.where("UPPER(title) LIKE ?", "%#{params[:term].upcase}%")
+    books = Book.search_by_title(params[:term])
     render status: 200, json: books
   end
 

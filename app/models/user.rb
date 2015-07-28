@@ -42,4 +42,8 @@ class User < ActiveRecord::Base
     books.include?(book)
   end
 
+  def self.search_by_username(term)
+    where("username LIKE ?", "%#{term}%")
+  end
+
 end

@@ -10,4 +10,8 @@ class Book < ActiveRecord::Base
   validates_attachment_content_type :cover, :content_type => /\Aimage\/.*\z/
 
   validates_presence_of :title, :author
+
+  def self.search_by_title(title)
+    where("UPPER(title) LIKE ?", "%#{title.upcase}%")
+  end
 end
