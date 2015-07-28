@@ -1,11 +1,27 @@
 {
   "name": "changebook",
-  "dependencies" : {
-    "browserify": "~> 10.2.4",
+  "dependencies": {
+    "browserify": "^10.2.6",
     "browserify-incremental": "^3.0.1"
   },
   "license": "MIT",
   "engines": {
     "node": ">= 0.10"
-  }
+  },
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uesteibar/changebook.git"
+  },
+  "author": "uesteibar",
+  "bugs": {
+    "url": "https://github.com/uesteibar/changebook/issues"
+  },
+  "homepage": "https://github.com/uesteibar/changebook"
 }

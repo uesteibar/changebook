@@ -6,8 +6,8 @@ class BooksController < ApplicationController
   end
 
   def create
-    current_user.books.create(book_params)
-    redirect_to user_path(current_user)
+    Book.create(book_params)
+    redirect_to new_book_path
   end
 
   def all
@@ -28,6 +28,6 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :author, :cover, :to_give_away, :to_exchange)
+    params.require(:book).permit(:title, :author, :cover)
   end
 end
