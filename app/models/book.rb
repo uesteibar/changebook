@@ -1,5 +1,6 @@
 class Book < ActiveRecord::Base
-  belongs_to :user
+  has_many :ownerships
+  has_many :users, through: :ownerships
 
   has_attached_file :cover, styles: {
     thumb: '100x100>',
