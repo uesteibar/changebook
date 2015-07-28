@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require twitter/typeahead.min
+//= require handlebars
 //= require_tree .
 
 window.bookPredictor = require('./book/book-predictor');

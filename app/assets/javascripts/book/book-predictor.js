@@ -21,10 +21,18 @@ BookPredictor.prototype.init = function(selector) {
     });
 
     input.bind('typeahead:select', function(ev, suggestion) {
-      console.log(suggestion);
+      var searchHtml = HandlebarsTemplates['books/search-results']({books: [suggestion]});
+      $('#search-results').html(searchHtml);
     });
-
   });
+
+  $('#book-search').on('submit', function(event) {
+    event.preventDefault();
+    this.bookRetriever.search($(selector).val(), function(books){
+      var searchHtml = HandlebarsTemplates['books/search-results']({books: books});
+      $('#search-results').html(searchHtml);
+    });
+  }.bind(this));
 };
 
 module.exports = new BookPredictor(new BookRetriever);

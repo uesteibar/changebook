@@ -12,7 +12,8 @@ Rails.application.routes.draw do
     resources :books, only: [:new, :create, :destroy]
   end
 
-  get "/api/books/title", to: "books#all_titles"
+  get "/api/books", to: "books#all_titles"
+  get "/api/books/search/:term", to: "books#search"
 
   post "/users/:id/follow", to: "followings#create"
   delete "/users/:id/unfollow", to: "followings#destroy"
