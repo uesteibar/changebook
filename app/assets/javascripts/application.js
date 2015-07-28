@@ -12,6 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require bootstrap-sprockets
+//= require twitter/typeahead.min
 //= require_tree .
+
+window.bookPredictor = require('./book/book-predictor');
+console.log(window.bookPredictor);
