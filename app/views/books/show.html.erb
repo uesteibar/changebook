@@ -13,7 +13,11 @@
           <p>
             <%= pluralize(@book.ownerships.count, "user") %> offer this book.
           </p>
+          <div class="center-block">
+            <%= link_to "Recommend it", new_book_recommendation_path(@book), class: "btn btn-primary" %>
+          </div>
         </div>
+
       </div>
     </div>
   </div>
