@@ -2,6 +2,8 @@ class Book < ActiveRecord::Base
   has_many :ownerships
   has_many :users, through: :ownerships
 
+  has_many :recommendations
+
   has_attached_file :cover, styles: {
     thumb: '100x100>',
     square: '200x200#',

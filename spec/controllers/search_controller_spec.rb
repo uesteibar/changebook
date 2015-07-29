@@ -21,7 +21,7 @@ RSpec.describe SearchController, type: :controller do
         expect(response.code.to_i).to eq(200)
       end
 
-      it 'returns a json with the matching users' do
+      it 'renders the search template' do
         get :search, term: 'est'
         expect(response).to render_template('search')
       end
