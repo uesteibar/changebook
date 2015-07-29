@@ -1,7 +1,9 @@
-<div class="card card--books">
+<div class="card">
+  <h3 class="text-center">This user is offering</h3>
+  <hr>
   <% if ownerships.any? %>
     <% ownerships.each_with_index do |ownership, index| %>
-      <div class="card--books--item row">
+      <div class="card--item row">
         <div class="col-xs-3">
           <%= image_tag ownership.book.cover.url(:medium), class: "img-responsive center-block" %>
         </div>

@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   has_many :ownerships
   has_many :books, through: :ownerships
 
+  has_many :recommendations
+
   has_many :active_relationships, class_name:  "Following", foreign_key: "follower_id", dependent: :destroy
   has_many :passive_relationships, class_name:  "Following", foreign_key: "followed_id", dependent: :destroy
 
@@ -42,6 +44,18 @@ class User < ActiveRecord::Base
     books.include?(book)
   end
 
+  def recommends?(book)
+    recommendations.where(book_id: book.id).any?
+  end
+
+  def recommend(book, comment)
+    recommendations.create(book_id: book.id, comment: comment)
+  end
+
+  def offerings
+    ownerships.where("to_give_away is true OR to_exchange is true")
+  end
+  
   def self.search_by_username(term)
     where("username LIKE ?", "%#{term}%")
   end
