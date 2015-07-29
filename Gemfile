@@ -45,9 +45,6 @@ gem 'geocoder'
 gem 'paperclip', '~> 4.3'
 gem 'aws-sdk', '< 2.0'
 
-# books info
-gem 'openlibrary'
-
 # predictive search
 gem 'twitter-typeahead-rails'
 
