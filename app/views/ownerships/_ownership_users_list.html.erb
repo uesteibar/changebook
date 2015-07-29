@@ -1,0 +1,23 @@
+<div class="card card--books">
+  <% if ownerships.any? %>
+    <% ownerships.each_with_index do |ownership, index| %>
+
+      <div class="card--thumbnail">
+        <%= image_tag ownership.user.avatar.url(:square), class: "img-responsive center-block" %>
+      </div>
+
+      <div>
+        <h3><%= link_to "#{ownership.user.username}", user_path(ownership.user) %></h3>
+        <p>
+          <span aria-hidden="true" class="glyphicon glyphicon-map-marker"></span>
+          <%= ownership.user.location %>
+        </p>
+      </div>
+      <% if ownerships.size > index + 1 %>
+        <hr>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p class="lead text-center">No users offering it yet!</p>
+  <% end %>
+</div>

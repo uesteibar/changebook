@@ -1,0 +1,23 @@
+<div class="card card--recommendation">
+  <% if recommendations.any? %>
+    <% recommendations.each_with_index do |recommendation, index| %>
+      <div class="card--thumbnail">
+        <%= image_tag recommendation.user.avatar.url(:square), class: "img-responsive center-block" %>
+      </div>
+
+      <div>
+        <h3><%= link_to "#{recommendation.user.username}", user_path(recommendation.user) %> said:</h3>
+        <p>
+          <%= recommendation.comment %>
+        </p>
+      </div>
+      <% if recommendations.size > index + 1 %>
+        <hr>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p class="lead text-center">
+      No recommendations from this user so far!
+    </p>
+  <% end %>
+</div>
