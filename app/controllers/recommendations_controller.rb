@@ -1,4 +1,6 @@
 class RecommendationsController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @recommendation = Book.find(params[:book_id]).recommendations.new
   end
