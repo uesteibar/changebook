@@ -52,6 +52,10 @@ class User < ActiveRecord::Base
     recommendations.create(book_id: book.id, comment: comment)
   end
 
+  def offerings
+    ownerships.where("to_give_away is true OR to_exchange is true")
+  end
+  
   def self.search_by_username(term)
     where("username LIKE ?", "%#{term}%")
   end

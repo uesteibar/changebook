@@ -1,7 +1,9 @@
 <div class="card card--recommendation">
+  <h3 class="text-center">Recommendations</h3>
+  <hr>
   <% if recommendations.any? %>
     <% recommendations.each_with_index do |recommendation, index| %>
-      <div class="card--books--item row">
+      <div class="card--item row">
         <div class="col-xs-3">
           <%= image_tag recommendation.book.cover.url(:medium), class: "img-responsive center-block" %>
         </div>

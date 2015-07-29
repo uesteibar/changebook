@@ -16,8 +16,13 @@ class Book < ActiveRecord::Base
   def self.search_by_title(title)
     where("UPPER(title) LIKE ?", "%#{title.upcase}%")
   end
+  
+  def offerings
+    ownerships.where("to_give_away is true OR to_exchange is true")
+  end
 
   def offerings_count
     ownerships.where("to_give_away is true OR to_exchange is true").count
   end
+
 end

@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
-    <div class="card card--book">
+    <div class="card">
       <div class="row">
         <div class="col-md-4">
           <%= image_tag @book.cover.url(:medium), class: "img-responsive center-block" %>
@@ -23,9 +23,9 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row margin-top">
   <div class="col-md-5 col-md-offset-1">
-    <%= render "ownerships/ownership_users_list", ownerships: @book.ownerships %>
+    <%= render "ownerships/ownership_users_list", ownerships: @book.offerings %>
   </div>
 
   <div class="col-md-5">
