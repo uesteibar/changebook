@@ -7,13 +7,12 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :edit, :update] do
     resources :ownerships, only: [:destroy]
-    resources :recommendations, only: [:destroy]
   end
 
   resources :ownerships, only: [:new, :create]
 
   resources :books, only: [:show, :create] do
-    resources :recommendations, only: [:new, :create]
+    resources :recommendations, only: [:new, :create, :destroy]
   end
 
   get "/search", to: "search#search"

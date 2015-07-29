@@ -13,7 +13,7 @@
     <div class="wrap">
 
       <div class="container-fluid">
-        <nav class="navbar navbar-primary">
+        <nav class="navbar navbar-primary navbar-fixed-top">
           <div class="container-fluid">
             <div class="navbar-header">
               <button aria-expanded="false" class="navbar-toggle collapsed" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
@@ -77,12 +77,14 @@
             </div>
           </div>
         </nav>
-
-        <%= render 'layouts/flashes'  %>
-
-        <%= yield %>
-
       </div>
+
+        <div class="container app-content">
+          <%= render 'layouts/flashes'  %>
+
+          <%= yield %>
+        </div>
+
 
       <div class="push"></div>
     </div>

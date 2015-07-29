@@ -3,26 +3,33 @@
   <hr>
   <% if ownerships.any? %>
     <% ownerships.each_with_index do |ownership, index| %>
-      <div class="card--item row">
-        <div class="col-xs-3">
-          <%= image_tag ownership.book.cover.url(:medium), class: "img-responsive center-block" %>
-        </div>
-        <div class="col-xs-5">
-          <h3><%= link_to ownership.book.title.titleize, book_path(ownership.book) %></h3>
-          <p>
-            by
-            <%= ownership.book.author.titleize %>
-          </p>
-        </div>
-        <div class="col-xs-4">
-          <% if current_user.owns?(ownership.book) %>
-            <%= form_for [current_user, ownership], method: :delete do |f| %>
-              <%= f.submit value: "Delete", class: "btn btn-danger" %>
-            <% end %>
-          <% else %>
-            <a class="btn btn-primary" href="" name="button" type="button">I want it!</a>
-          <% end %>
-          <a class="btn btn-primary" name="button" type="button">Recommend!</a>
+      <div class="card--item">
+        <div class="row">
+          <div class="col-xs-5">
+            <%= image_tag ownership.book.cover.url(:medium), class: "img-responsive center-block" %>
+          </div>
+          <div class="col-xs-7">
+            <div class="row">
+              <h3 class="text-center"><%= link_to ownership.book.title.titleize, book_path(ownership.book) %></h3>
+              <p class="text-center">
+                by
+                <%= ownership.book.author.titleize %>
+              </p>
+            </div>
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                <% if current_user.owns?(ownership.book) %>
+                  <%= form_for [current_user, ownership], method: :delete do |f| %>
+                    <%= f.submit value: "Delete", class: "btn btn-danger" %>
+                  <% end %>
+                <% else %>
+                  <a class="btn btn-primary" href="" name="button" type="button">I want it!</a>
+                <% end %>
+                <%= link_to "Recommend it", new_book_recommendation_path(ownership.book), class: "btn btn-primary" %>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
       <% if ownerships.size > index + 1 %>
