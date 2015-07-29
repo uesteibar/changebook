@@ -22,7 +22,7 @@
         </div>
         <div class="col-xs-4">
           <% if current_user.recommends?(recommendation.book) %>
-            <%= form_for [current_user, recommendation], method: :delete do |f| %>
+            <%= form_for [recommendation.book, recommendation], method: :delete do |f| %>
               <%= f.submit value: "Delete", class: "btn btn-danger" %>
             <% end %>
           <% end %>

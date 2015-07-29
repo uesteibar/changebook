@@ -11,6 +11,12 @@ class RecommendationsController < ApplicationController
     redirect_to user_path(current_user)
   end
 
+  def destroy
+    recommendation = current_user.recommendations.find(params[:id])
+    recommendation.destroy
+    redirect_to user_path(current_user)
+  end
+
   private
 
   def recommendation_params
