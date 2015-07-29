@@ -5,6 +5,11 @@ class BooksController < ApplicationController
     @book = current_user.books.new
   end
 
+  def show
+    @book = Book.find(params[:id])
+    @offering_count = @book.offerings_count
+  end
+
   def create
     Book.create(book_params)
     redirect_to new_book_path

@@ -6,7 +6,7 @@
           <%= image_tag ownership.book.cover.url(:medium), class: "img-responsive center-block" %>
         </div>
         <div class="col-xs-5">
-          <h3><%= ownership.book.title.titleize %></h3>
+          <h3><%= link_to ownership.book.title.titleize, book_path(ownership.book) %></h3>
           <p>
             by
             <%= ownership.book.author.titleize %>

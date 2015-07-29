@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :ownerships, only: [:create]
 
-  resources :books, only: [:new, :create]
+  resources :books, only: [:show, :new, :create]
 
 
   get "/api/books", to: "books#all"
