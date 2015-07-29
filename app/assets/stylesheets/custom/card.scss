@@ -6,8 +6,13 @@
   border-radius:3px;
   user-select:none;
 
-  &.card-book {
-    
+  .btn {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  &.card--recommendation {
+
   }
 
   &.card--user {
@@ -17,10 +22,6 @@
   }
 
   &.card--books {
-    .btn {
-      width: 100%;
-      margin-top: 1rem;
-    }
 
     .card--books--item {
       padding: 1rem 2rem;;

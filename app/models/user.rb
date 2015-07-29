@@ -44,6 +44,10 @@ class User < ActiveRecord::Base
     books.include?(book)
   end
 
+  def recommends?(book)
+    recommendations.where(book_id: book.id).any?
+  end
+
   def recommend(book, comment)
     recommendations.create(book_id: book.id, comment: comment)
   end

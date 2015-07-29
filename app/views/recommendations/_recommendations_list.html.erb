@@ -1,0 +1,38 @@
+<div class="card card--recommendation">
+  <% if recommendations.any? %>
+    <% recommendations.each_with_index do |recommendation, index| %>
+      <div class="card--books--item row">
+        <div class="col-xs-3">
+          <%= image_tag recommendation.book.cover.url(:medium), class: "img-responsive center-block" %>
+        </div>
+        <div class="col-xs-5">
+          <h3><%= link_to recommendation.book.title.titleize, book_path(recommendation.book) %></h3>
+          <p>
+            by
+            <%= recommendation.book.author.titleize %>
+          </p>
+          <p>
+            <%= recommendation.user.username %> said:
+          </p>
+          <p>
+            <%= recommendation.comment %>
+          </p>
+        </div>
+        <div class="col-xs-4">
+          <% if current_user.recommends?(recommendation.book) %>
+            <%= form_for [current_user, recommendation], method: :delete do |f| %>
+              <%= f.submit value: "Delete", class: "btn btn-danger" %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <% if recommendations.size > index + 1 %>
+        <hr>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p class="lead text-center">
+      No recommendations from this user so far!
+    </p>
+  <% end %>
+</div>
