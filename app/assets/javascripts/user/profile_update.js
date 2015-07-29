@@ -5,7 +5,7 @@ function profile_update_initialize() {
 
   google.maps.event.addListener(autocomplete, 'place_changed', function() {
     location = autocomplete.getPlace().geometry.location;
-    $('#latitude').val(location.A);
-    $('#longitude').val(location.F);
+    $('#latitude').val(location.G);
+    $('#longitude').val(location.K);
   });
 }
