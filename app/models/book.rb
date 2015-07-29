@@ -2,6 +2,8 @@ class Book < ActiveRecord::Base
   has_many :ownerships
   has_many :users, through: :ownerships
 
+  has_many :recommendations
+
   has_attached_file :cover, styles: {
     thumb: '100x100>',
     square: '200x200#',
@@ -14,4 +16,13 @@ class Book < ActiveRecord::Base
   def self.search_by_title(title)
     where("UPPER(title) LIKE ?", "%#{title.upcase}%")
   end
+  
+  def offerings
+    ownerships.where("to_give_away is true OR to_exchange is true")
+  end
+
+  def offerings_count
+    ownerships.where("to_give_away is true OR to_exchange is true").count
+  end
+
 end

@@ -32,7 +32,13 @@
     </div>
   </div>
   <div class="col-md-5">
-    <%= render "ownerships/ownership_list", ownerships: @user.ownerships %>
+    <%= render "recommendations/recommendations_list", recommendations: @user.recommendations %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-5 col-md-offset-1">
+    <%= render "ownerships/ownership_list", ownerships: @user.offerings %>
   </div>
 </div>
 

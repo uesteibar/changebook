@@ -1,0 +1,56 @@
+<div class="row margin-top">
+  <div class="col-md-5 col-md-offset-1">
+
+    <% if @users.any? %>
+      <% @users.each do |user| %>
+        <div class="card search--card">
+
+          <div class="card--thumbnail">
+            <%= image_tag user.avatar.url(:square), class: "img-responsive center-block" %>
+          </div>
+
+          <div>
+            <h3><%= link_to "#{user.username}", user_path(user) %></h3>
+            <p>
+              <span aria-hidden="true" class="glyphicon glyphicon-map-marker"></span>
+              <%= user.location %>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="lead text-center">
+        No users found.
+      </p>
+    <% end %>
+
+  </div>
+
+  <div class="col-md-5">
+    <% if @books.any? %>
+      <% @books.each do |book| %>
+        <div class="card search--card">
+
+          <div class="card--thumbnail">
+            <%= image_tag book.cover.url(:medium), class: "img-responsive center-block" %>
+          </div>
+
+          <div>
+            <h3><%= link_to book.title.titleize, book_path(book) %></h3>
+            <p class="lead">
+              <%= book.author %>
+            </p>
+            <p>
+              <%= pluralize(book.ownerships.count, "user") %> offer this book.
+            </p>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="lead text-center">
+        No books found.
+      </p>
+    <% end %>
+
+  </div>
+</div>

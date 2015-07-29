@@ -6,17 +6,17 @@ Rails.application.routes.draw do
                     path_names: {sign_in: "login", sign_up: "signup", sign_out: "logout"}
 
   resources :users, only: [:show, :edit, :update] do
-    collection do
-      get "search"
-    end
     resources :ownerships, only: [:destroy]
+    resources :recommendations, only: [:destroy]
   end
 
-  resources :ownerships, only: [:create]
+  resources :ownerships, only: [:new, :create]
 
-  resources :books, only: [:new, :create]
+  resources :books, only: [:show, :create] do
+    resources :recommendations, only: [:new, :create]
+  end
 
-
+  get "/search", to: "search#search"
   get "/api/books", to: "books#all"
   get "/api/books/:id", to: "books#one"
   get "/api/books/search/:term", to: "books#search"

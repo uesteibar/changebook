@@ -1,29 +1,23 @@
 .card {
-  padding:1.5rem;
-  box-shadow:0 1px 2px #aaa;
-  background:white;
-  margin:0 1rem 1rem;
-  border-radius:3px;
-  user-select:none;
+  padding: 1.5rem;
+  box-shadow: 0 1px 2px #aaa;
+  background: white;
+  margin: 0 1rem 1rem;
+  border-radius: 3px;
+  user-select: none;
+  .btn {
+    width: 100%;
+    margin-top: 1rem;
+  }
+  &.card--recommendation {
 
+  }
   &.card--user {
     h1 {
       margin-bottom: 3rem;
     }
   }
-
-  &.card--books {
-    .btn {
-      width: 100%;
-      margin-top: 1rem;
-    }
-
-    .card--books--item {
-      padding: 1rem 2rem;;
-    }
-  }
-
-  > .card--thumbnail {
+  .card--thumbnail {
     position: relative;
     float: left;
     margin-right: 2rem;
@@ -32,8 +26,10 @@
       margin-top: 1rem;
     }
   }
+  .card--item {
+    padding: 1rem 2rem;
+  }
 }
-
 .search-results {
   margin-top: 5rem;
 }

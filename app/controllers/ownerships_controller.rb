@@ -1,4 +1,9 @@
 class OwnershipsController < ApplicationController
+  def new
+    @book = current_user.books.new
+    @ownership = current_user.ownerships.new
+  end
+
   def create
     current_user.ownerships.create(ownership_params)
     render status: 201, json: user_path(current_user)

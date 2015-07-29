@@ -23,10 +23,6 @@ class UsersController < ApplicationController
     render :edit
   end
 
-  def search
-    @users = User.search_by_username(params[:term])
-  end
-
   private
 
   def user_params

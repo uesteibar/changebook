@@ -3,7 +3,7 @@ RSpec.describe "Followings", type: :request do
     create(:book)
   end
 
-  describe 'GET /api/books/title' do
+  describe 'GET /api/books' do
     it 'should return the titles of all the books' do
       get "/api/books", format: :json
       expect(JSON.parse(response.body).length).to eq 1
