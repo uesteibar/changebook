@@ -1,4 +1,6 @@
 class OwnershipsController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @book = current_user.books.new
     @ownership = current_user.ownerships.new
