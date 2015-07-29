@@ -9,9 +9,9 @@ Rails.application.routes.draw do
     resources :ownerships, only: [:destroy]
   end
 
-  resources :ownerships, only: [:create]
+  resources :ownerships, only: [:new, :create]
 
-  resources :books, only: [:show, :new, :create] do
+  resources :books, only: [:show, :create] do
     resources :recommendations, only: [:new, :create]
   end
 
