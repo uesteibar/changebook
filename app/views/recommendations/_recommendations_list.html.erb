@@ -23,7 +23,7 @@
         <div class="row">
           <% if current_user.recommendations.include?(recommendation) %>
             <%= form_for [recommendation.book, recommendation], method: :delete do |f| %>
-              <%= f.submit value: "Delete", class: "btn btn-danger" %>
+              <%= f.submit value: "Delete", class: "btn btn-danger full-width" %>
             <% end %>
           <% end %>
         </div>

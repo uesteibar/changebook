@@ -20,12 +20,12 @@
               <div class="col-md-8 col-md-offset-2">
                 <% if current_user.owns?(ownership.book) %>
                   <%= form_for [current_user, ownership], method: :delete do |f| %>
-                    <%= f.submit value: "Delete", class: "btn btn-danger" %>
+                    <%= f.submit value: "Delete", class: "btn btn-danger center-block" %>
                   <% end %>
                 <% else %>
-                  <a class="btn btn-primary" href="" name="button" type="button">I want it!</a>
+                  <a class="btn btn-primary center-block" href="" name="button" type="button">I want it!</a>
                 <% end %>
-                <%= link_to "Recommend it", new_book_recommendation_path(ownership.book), class: "btn btn-primary" %>
+                <%= link_to "Recommend it", new_book_recommendation_path(ownership.book), class: "btn btn-primary center-block" %>
               </div>
             </div>
           </div>
