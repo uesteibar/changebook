@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get "/", to: "home#index"
+  get "/", to: "events#index"
 
   devise_for :users, path: "",
                     path_names: {sign_in: "login", sign_up: "signup", sign_out: "logout"}
@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   resources :books, only: [:show, :create] do
     resources :recommendations, only: [:new, :create, :destroy]
   end
+
+  resources :events, only: [:index]
 
   get "/search", to: "search#search"
   get "/api/books", to: "books#all"

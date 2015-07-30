@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :authenticate_user!, except: [:all_titles]
+  before_action :authenticate_user!, except: [:all]
 
   def show
     @book = Book.find(params[:id])

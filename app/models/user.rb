@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
 
   has_many :recommendations
 
+  has_many :events
+
   has_many :active_relationships, class_name:  "Following", foreign_key: "follower_id", dependent: :destroy
   has_many :passive_relationships, class_name:  "Following", foreign_key: "followed_id", dependent: :destroy
 
@@ -55,7 +57,7 @@ class User < ActiveRecord::Base
   def offerings
     ownerships.where("to_give_away is true OR to_exchange is true")
   end
-  
+
   def self.search_by_username(term)
     where("username LIKE ?", "%#{term}%")
   end

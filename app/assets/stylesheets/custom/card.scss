@@ -10,9 +10,18 @@
     width: 100%;
     margin-top: 1rem;
   }
-  &.card--recommendation {
+  &.card--event {
+    height: 13rem;
 
+    .card-content: {
+      float: left;
+    }
+
+    .offering-conditions {
+      padding-left: 15rem;
+    }
   }
+
   &.card--user {
     h1 {
       margin-bottom: 3rem;
@@ -27,6 +36,7 @@
       margin-top: 1rem;
     }
   }
+
   .card--item {
     padding: 1rem 2rem;
   }

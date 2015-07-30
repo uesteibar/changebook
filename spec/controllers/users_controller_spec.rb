@@ -10,7 +10,7 @@ RSpec.describe UsersController, type: :controller do
     sign_in @user
   end
 
-  describe 'GET #index' do
+  describe 'GET #show' do
     context 'when the user is logged in' do
       it 'responds successfully with an HTTP 200 status code' do
         get :show, id: @user.id
