@@ -14,19 +14,19 @@ RSpec.describe Transfer, type: :model do
 
   describe '#request_transfer' do
     it 'should create a transfer request' do
-      transfer = @uesteibar.request_transfer(dest_user: @alaine, book: @book)
-      expect(@uesteibar.sent_transfers.last).to eq transfer
-      expect(@alaine.received_transfers.last).to eq transfer
-      expect(@uesteibar.sent_transfers.last.accepted).to eq false
+      transfer = @alaine.request_transfer(@uesteibar.ownerships.last)
+      expect(@alaine.sent_transfers.last).to eq transfer
+      expect(@uesteibar.received_transfers.last).to eq transfer
+      expect(@alaine.sent_transfers.last.accepted).to eq false
     end
   end
 
   describe '#accept!' do
     it 'should transfert a book to the new owner' do
-      @uesteibar.request_transfer(dest_user: @alaine, book: @book)
-      @alaine.received_transfers.last.accept
+      @alaine.request_transfer(@uesteibar.ownerships.last)
+      @uesteibar.received_transfers.last.accept!
       expect(@alaine.books.last).to eq @book
-      expect(@alaine.received_transfers.last.accepted).to eq true
+      expect(@uesteibar.received_transfers.size).to eq 0
       expect(@uesteibar.books.size).to eq 0
     end
   end

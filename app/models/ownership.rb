@@ -2,6 +2,8 @@ class Ownership < ActiveRecord::Base
   belongs_to :user
   belongs_to :book
 
+  has_many :transfers
+
   validates_presence_of :user_id, :book_id
 
   after_create :create_events

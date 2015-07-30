@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :edit, :update] do
     resources :ownerships, only: [:destroy]
+    resources :transfers, only: [:index, :create]
   end
 
   resources :ownerships, only: [:new, :create]

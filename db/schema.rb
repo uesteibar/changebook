@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150730192714) do
+ActiveRecord::Schema.define(version: 20150730223347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,15 +67,13 @@ ActiveRecord::Schema.define(version: 20150730192714) do
 
   create_table "transfers", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "dest_user_id"
-    t.integer  "book_id"
     t.boolean  "accepted"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "ownership_id"
   end
 
-  add_index "transfers", ["book_id"], name: "index_transfers_on_book_id", using: :btree
-  add_index "transfers", ["dest_user_id"], name: "index_transfers_on_dest_user_id", using: :btree
+  add_index "transfers", ["ownership_id"], name: "index_transfers_on_ownership_id", using: :btree
   add_index "transfers", ["user_id"], name: "index_transfers_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
