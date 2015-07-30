@@ -8,6 +8,7 @@
       <%= link_to "#{item.user.username}", user_path(item.user) %>
       offered
       <%= link_to "#{item.book.title}", book_path(item.book) %>
+      
       <ul class="offering-conditions list-unstyled">
         <% if item.to_give_away %>
           <li>to give away</li>

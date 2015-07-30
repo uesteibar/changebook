@@ -33,8 +33,8 @@ RSpec.describe Event, type: :model do
       end
 
       it 'should create an event with the correct URN on every follower' do
-        offering = @uesteibar.ownerships.create(book_id: @book.id, to_exchange: true)
-        expect(@alaine.events.last.item_urn).to eq "offering:#{offering.id}"
+        ownership = @uesteibar.ownerships.create(book_id: @book.id, to_exchange: true)
+        expect(@alaine.events.last.item_urn).to eq "ownership:#{ownership.id}"
       end
     end
   end
