@@ -12,7 +12,7 @@ class Ownership < ActiveRecord::Base
     user.followers.each do |follower|
       Event.create(
         user_id: follower.id,
-        item_urn: "offering:#{id}"
+        item_urn: "ownership:#{id}"
       )
     end
   end
