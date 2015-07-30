@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
   has_many :following, through: :active_relationships,  source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
+  has_many :sent_transfers, class_name: 'Transfer', primary_key: 'id', foreign_key: 'user_id'
+  has_many :received_transfers, class_name: 'Transfer', primary_key: 'id', foreign_key: 'dest_user_id'
+
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
@@ -56,6 +60,14 @@ class User < ActiveRecord::Base
 
   def offerings
     ownerships.where("to_give_away is true OR to_exchange is true")
+  end
+
+  def request_transfer(dest_user:, book:)
+    sent_transfers.create(
+      book_id: book.id,
+      dest_user_id: dest_user.id,
+      accepted: false
+    )
   end
 
   def self.search_by_username(term)
