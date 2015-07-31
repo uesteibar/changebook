@@ -10,91 +10,97 @@
   </head>
   <body>
 
-    <div class="wrap">
+      <div class="wrap">
+    <% if current_user %>
 
-      <div class="container-fluid">
-        <nav class="navbar navbar-primary navbar--custom navbar-fixed-top">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <button aria-expanded="false" class="navbar-toggle collapsed" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="/">
-                ChangeBook!
-              </a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-              <ul class="nav navbar-nav navbar-right">
+        <div class="container-fluid">
+          <nav class="navbar navbar-primary navbar--custom navbar-fixed-top">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <button aria-expanded="false" class="navbar-toggle collapsed" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
                 <% if current_user %>
-                <form class="navbar-form navbar-left" method="GET" action="/search">
-                  <div class="form-group">
-                    <input id="user-search" name="term" class="form-control" placeholder="Search..." type="text">
-                  </div>
-                </form>
-
-                <li>
-                  <%= link_to "Offer book", new_ownership_path %>
-                </li>
-
-                <li class="dropdown">
-                  <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button"><%= current_user.username %>
-                    <span class="caret"></span>
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <%= link_to "Profile", user_path(current_user) %>
-                    </li>
-                    <li>
-                      <%= link_to "Book transfers", transfers_path %>
-                    </li>
-                    <li>
-                      <%= link_to "Edit profile", edit_user_path(current_user) %>
-                    </li>
-                    <li>
-                      <%= link_to "Edit account", edit_registration_path(current_user) %>
-                    </li>
-                    <li class="divider" role="separator"></li>
-                    <li>
-                      <%= link_to 'Log out', destroy_user_session_path, :method => :delete %>
-                    </li>
-                  </ul>
-                </li>
+                <a class="navbar-brand" href="/timeline">
+                  ChangeBook!
+                </a>
                 <% else %>
-                <li>
-                  <%= link_to "Log in", "/login" %>
-                </li>
-                <li>
-                  <%= link_to "Sign up", "/signup" %>
-                </li>
+                <a class="navbar-brand" href="/">
+                  ChangeBook!
+                </a>
                 <% end %>
-              </ul>
+              </div>
 
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                <ul class="nav navbar-nav navbar-right">
+                  <% if current_user %>
+                  <form action="/search" class="navbar-form navbar-left" method="GET">
+                    <div class="form-group">
+                      <input class="form-control" id="user-search" name="term" placeholder="Search..." type="text">
+                    </div>
+                  </form>
+
+                  <li>
+                    <%= link_to "Offer book", new_ownership_path %>
+                  </li>
+
+                  <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">
+                      <% if current_user.received_transfers.any? %>
+                      <span class="badge"><%= current_user.received_transfers.count %></span>
+                      <% end %>
+                      <%= current_user.username %>
+                      <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <%= link_to "Profile", user_path(current_user) %>
+                      </li>
+                      <li>
+                        <% badge = "<span class='badge'>#{current_user.received_transfers.count}</span>" if current_user.received_transfers.any? %>
+                        <%= link_to raw("Book transfer #{badge}"), transfers_path %>
+                      </li>
+                      <li>
+                        <%= link_to "Edit profile", edit_user_path(current_user) %>
+                      </li>
+                      <li>
+                        <%= link_to "Edit account", edit_registration_path(current_user) %>
+                      </li>
+                      <li class="divider" role="separator"></li>
+                      <li>
+                        <%= link_to 'Log out', destroy_user_session_path, :method => :delete %>
+                      </li>
+                    </ul>
+                  </li>
+                  <% end %>
+                </ul>
+
+              </div>
             </div>
-          </div>
-        </nav>
-      </div>
+          </nav>
+        </div>
+    <% end %>
 
         <div class="container app-content">
-          <%= render 'layouts/flashes'  %>
-
+          <% if current_user %>
+            <%= render 'layouts/flashes'  %>
+          <% end %>
           <%= yield %>
         </div>
 
+        <div class="push"></div>
+      </div>
 
-      <div class="push"></div>
-    </div>
-
-    <div class="footer">
-      <div class="container">
-        <div class="row">
-          <p class="text-center">Welcome to ChangeBook! by uesteibar @ ironhack. 2015.</p>
+      <div class="footer">
+        <div class="container">
+          <div class="row">
+            <p class="text-center">Welcome to ChangeBook! by uesteibar @ ironhack. 2015.</p>
+          </div>
         </div>
       </div>
-    </div>
   </body>
 </html>

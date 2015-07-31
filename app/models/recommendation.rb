@@ -5,6 +5,7 @@ class Recommendation < ActiveRecord::Base
   validates_presence_of :user_id, :book_id, :comment
 
   after_create :create_events
+  before_destroy :destroy_events
 
   private
 
@@ -15,5 +16,10 @@ class Recommendation < ActiveRecord::Base
         item_urn: "recommendation:#{id}"
       )
     end
+  end
+
+  def destroy_events
+    events = Event.where(item_urn: "ownership:#{id}")
+    events.destroy_all
   end
 end

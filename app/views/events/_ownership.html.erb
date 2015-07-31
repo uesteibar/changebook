@@ -8,7 +8,7 @@
       <%= link_to "#{item.user.username}", user_path(item.user) %>
       offered
       <%= link_to "#{item.book.title}", book_path(item.book) %>
-      
+
       <ul class="offering-conditions list-unstyled">
         <% if item.to_give_away %>
           <li>to give away</li>
@@ -17,6 +17,11 @@
           <li>to exchange</li>
         <% end %>
       </ul>
+      <% if item.user.id != current_user.id %>
+        <%= form_tag ownership_transfers_path(item), method: "post" do %>
+          <%= submit_tag "I want it" , class: "btn btn-primary" %>
+        <% end %>
+      <% end %>
     </p>
       <p><%= item.created_at.to_formatted_s(:short) %></p>
   </div>

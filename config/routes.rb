@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  get "/", to: "events#index"
+  get "/", to: "home#index"
+
+  get "/timeline", to: "events#index"
 
   devise_for :users, path: "",
                     path_names: {sign_in: "login", sign_up: "signup", sign_out: "logout"}
