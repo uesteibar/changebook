@@ -5,9 +5,9 @@
         <h1 class="text-center"><%= @user.username %>
           <% if @user.id != current_user.id %>
             <% if @following %>
-              <button class="btn btn-primary" data-id="<%= @user.id %>" id="unfollow-user" name="button" type="button">Unfollow</button>
+              <button class="btn btn-primary center-block" data-id="<%= @user.id %>" id="unfollow-user" name="button" type="button">Unfollow</button>
             <% else %>
-              <button class="btn btn-primary" data-id="<%= @user.id %>" id="follow-user" name="button" type="button">Follow</button>
+              <button class="btn btn-primary center-block" data-id="<%= @user.id %>" id="follow-user" name="button" type="button">Follow</button>
             <% end %>
           <% end %>
         </h1>
@@ -38,7 +38,11 @@
 
 <div class="row">
   <div class="col-md-5 col-md-offset-1">
-    <%= render "ownerships/ownership_list", ownerships: @user.offerings %>
+    <% if @user.id == current_user.id %>
+      <%= render "ownerships/ownership_list", ownerships: @user.ownerships %>
+    <% else %>
+      <%= render "ownerships/offering_list", ownerships: @user.offerings %>
+    <% end %>
   </div>
 </div>
 

@@ -7,7 +7,7 @@
         <div class="col-xs-3">
           <%= image_tag recommendation.book.cover.url(:medium), class: "img-responsive center-block" %>
         </div>
-        <div class="col-xs-5">
+        <div class="col-xs-9">
           <h3><%= link_to recommendation.book.title.titleize, book_path(recommendation.book) %></h3>
           <p>
             by
@@ -20,10 +20,10 @@
             <%= recommendation.comment %>
           </p>
         </div>
-        <div class="col-xs-4">
-          <% if current_user.recommends?(recommendation.book) %>
+        <div class="row">
+          <% if current_user.recommendations.include?(recommendation) %>
             <%= form_for [recommendation.book, recommendation], method: :delete do |f| %>
-              <%= f.submit value: "Delete", class: "btn btn-danger" %>
+              <%= f.submit value: "Delete", class: "btn btn-danger full-width" %>
             <% end %>
           <% end %>
         </div>

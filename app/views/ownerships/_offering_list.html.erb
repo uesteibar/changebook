@@ -1,0 +1,44 @@
+<div class="card">
+  <h3 class="text-center">This user is offering</h3>
+  <hr>
+  <% if ownerships.any? %>
+    <% ownerships.each_with_index do |ownership, index| %>
+      <div class="card--item">
+        <div class="row">
+          <div class="col-xs-5">
+            <%= image_tag ownership.book.cover.url(:medium), class: "img-responsive center-block" %>
+          </div>
+          <div class="col-xs-7">
+            <div class="row">
+              <h3 class="text-center"><%= link_to ownership.book.title.titleize, book_path(ownership.book) %></h3>
+              <p class="text-center">
+                by
+                <%= ownership.book.author.titleize %>
+              </p>
+            </div>
+            <div class="row">
+              <div class="col-md-8 col-md-offset-2">
+                <% if current_user.id == ownership.user.id %>
+                  <%= form_for [current_user, ownership], method: :delete do |f| %>
+                    <%= f.submit value: "Delete", class: "btn btn-danger center-block" %>
+                  <% end %>
+                <% else %>
+                  <%= form_tag ownership_transfers_path(ownership), method: "post" do %>
+                    <%= submit_tag "I want it" , class: "btn btn-primary center-block" %>
+                  <% end %>
+                <% end %>
+                <%= link_to "Recommend it", new_book_recommendation_path(ownership.book), class: "btn btn-primary center-block" %>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <% if ownerships.size > index + 1 %>
+        <hr>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p class="lead text-center">No books offered yet!</p>
+  <% end %>
+</div>

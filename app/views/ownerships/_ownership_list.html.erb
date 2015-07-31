@@ -1,5 +1,5 @@
 <div class="card">
-  <h3 class="text-center">This user is offering</h3>
+  <h3 class="text-center">Your current books</h3>
   <hr>
   <% if ownerships.any? %>
     <% ownerships.each_with_index do |ownership, index| %>
@@ -15,17 +15,27 @@
                 by
                 <%= ownership.book.author.titleize %>
               </p>
+              <p class="text-center">
+                <% if ownership.offering? %>
+                    Offering:
+                    <% if ownership.to_give_away %>
+                      - to give away -
+                    <% end %>
+                    <% if ownership.to_exchange %>
+                      - to exchange -
+                    <% end %>
+                <% else %>
+                    not offered
+                <% end %>
+              </p>
             </div>
             <div class="row">
               <div class="col-md-8 col-md-offset-2">
-                <% if current_user.owns?(ownership.book) %>
-                  <%= form_for [current_user, ownership], method: :delete do |f| %>
-                    <%= f.submit value: "Delete", class: "btn btn-danger" %>
+                  <%= form_for [ownership], method: :delete do |f| %>
+                    <%= f.submit value: "Delete", class: "btn btn-danger center-block" %>
                   <% end %>
-                <% else %>
-                  <a class="btn btn-primary" href="" name="button" type="button">I want it!</a>
-                <% end %>
-                <%= link_to "Recommend it", new_book_recommendation_path(ownership.book), class: "btn btn-primary" %>
+                <%= link_to "Offer it", "", data: {id: ownership.id}, class: "open-update-ownership btn btn-primary center-block" %>
+                <%= link_to "Recommend it", new_book_recommendation_path(ownership.book), class: "btn btn-primary center-block" %>
               </div>
             </div>
           </div>
@@ -40,3 +50,37 @@
     <p class="lead text-center">No books offered yet!</p>
   <% end %>
 </div>
+
+
+<div id="update-ownership" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Update offer</h4>
+      </div>
+      <div class="modal-body">
+        <form id="updated-offer">
+          <div class="form-group">
+            <label for="to-give-away">To give away</label>
+            <input type="checkbox" name="to-give-away" value="true">
+          </div>
+          <div class="form-group">
+            <label for="to-exchange">To exchange</label>
+            <input type="checkbox" name="to-exchange" value="true">
+          </div>
+          <input type="submit" name="submit" value="Offer" class="btn btn-primary">
+        </form>
+      </div>
+    </div>
+<!-- /.modal-content -->
+  </div>
+<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<script type="text/javascript">
+  window.bookOwnershipManager.initUpdate();
+</script>

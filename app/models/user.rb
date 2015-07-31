@@ -13,11 +13,16 @@ class User < ActiveRecord::Base
 
   has_many :recommendations
 
+  has_many :events
+
   has_many :active_relationships, class_name:  "Following", foreign_key: "follower_id", dependent: :destroy
   has_many :passive_relationships, class_name:  "Following", foreign_key: "followed_id", dependent: :destroy
 
   has_many :following, through: :active_relationships,  source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
+
+  has_many :sent_transfers, class_name: 'Transfer', primary_key: 'id', foreign_key: 'user_id'
+
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
@@ -27,6 +32,10 @@ class User < ActiveRecord::Base
 
   validates_presence_of :username
   validates_uniqueness_of :username
+
+  def events_by_date
+    events.order(created_at: :desc)
+  end
 
   def follow(user)
     active_relationships.create(followed_id: user.id)
@@ -55,7 +64,15 @@ class User < ActiveRecord::Base
   def offerings
     ownerships.where("to_give_away is true OR to_exchange is true")
   end
-  
+
+  def request_transfer(ownership)
+    sent_transfers.create(ownership_id: ownership.id, accepted: false)
+  end
+
+  def received_transfers
+    Transfer.joins(:ownership).where("ownerships.user_id = ?", id)
+  end
+
   def self.search_by_username(term)
     where("username LIKE ?", "%#{term}%")
   end
