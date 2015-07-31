@@ -23,12 +23,9 @@
                     <%= f.submit value: "Delete", class: "btn btn-danger center-block" %>
                   <% end %>
                 <% else %>
-                  <%= form_tag(transfers_path, method: "post") do %>
-                    <%= text_field_tag :book_id, value: ownership.book.id %>
-                    <%= text_field_tag :book_id, value: ownership.book.id %>
-                    <%= submit_tag("Search") %>
+                  <%= form_tag ownership_transfers_path(ownership), method: "post" do %>
+                    <%= submit_tag "I want it" , class: "btn btn-primary center-block" %>
                   <% end %>
-                  <%= link_to "I want it", (ownership.book), class: "btn btn-primary center-block" %>
                 <% end %>
                 <%= link_to "Recommend it", new_book_recommendation_path(ownership.book), class: "btn btn-primary center-block" %>
               </div>

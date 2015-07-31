@@ -1,18 +1,17 @@
 class TransfersController < ApplicationController
   before_action :authenticate_user!
-  before_action :authorize_user, only: [:index, :create]
 
   def index
     @transfer_requests = current_user.received_transfers
   end
 
   def create
-    # TODO - create a transfer request
+    current_user.request_transfer(Ownership.find(params[:ownership_id]))
+    redirect_to "/"
   end
 
-  private
-
-  def transfer_params
-    params.require(:transfer).permit(:ownership_id)
+  def accept
+    current_user.received_transfers.find(params[:id]).accept!
+    redirect_to user_path(current_user)
   end
 end

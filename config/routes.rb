@@ -7,10 +7,14 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :edit, :update] do
     resources :ownerships, only: [:destroy]
-    resources :transfers, only: [:index, :create]
   end
 
-  resources :ownerships, only: [:new, :create]
+
+  resources :ownerships, only: [:new, :create] do
+    resources :transfers, only: [:create]
+  end
+  resources :transfers, only: [:index]
+  put "/transfers/:id/accept", to: "transfers#accept"
 
   resources :books, only: [:show, :create] do
     resources :recommendations, only: [:new, :create, :destroy]
