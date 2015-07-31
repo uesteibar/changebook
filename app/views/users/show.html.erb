@@ -38,7 +38,11 @@
 
 <div class="row">
   <div class="col-md-5 col-md-offset-1">
-    <%= render "ownerships/ownership_list", ownerships: @user.offerings %>
+    <% if @user.id == current_user.id %>
+      <%= render "ownerships/ownership_list", ownerships: @user.ownerships %>
+    <% else %>
+      <%= render "ownerships/offering_list", ownerships: @user.offerings %>
+    <% end %>
   </div>
 </div>
 

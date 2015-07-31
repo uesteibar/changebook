@@ -33,6 +33,10 @@ class User < ActiveRecord::Base
   validates_presence_of :username
   validates_uniqueness_of :username
 
+  def events_by_date
+    events.order(created_at: :desc)
+  end
+
   def follow(user)
     active_relationships.create(followed_id: user.id)
   end
