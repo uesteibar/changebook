@@ -13,8 +13,6 @@ class Ownership < ActiveRecord::Base
     to_give_away || to_exchange
   end
 
-  private
-
   def create_events
     user.followers.each do |follower|
       Event.create(

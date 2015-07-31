@@ -5,12 +5,10 @@ Rails.application.routes.draw do
   devise_for :users, path: "",
                     path_names: {sign_in: "login", sign_up: "signup", sign_out: "logout"}
 
-  resources :users, only: [:show, :edit, :update] do
-    resources :ownerships, only: [:destroy]
-  end
+  resources :users, only: [:show, :edit, :update]
 
 
-  resources :ownerships, only: [:new, :create] do
+  resources :ownerships, only: [:new, :create, :update, :destroy] do
     resources :transfers, only: [:create]
   end
   resources :transfers, only: [:index]

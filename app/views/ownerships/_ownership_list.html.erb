@@ -31,15 +31,10 @@
             </div>
             <div class="row">
               <div class="col-md-8 col-md-offset-2">
-                <% if current_user.id == ownership.user.id %>
-                  <%= form_for [current_user, ownership], method: :delete do |f| %>
+                  <%= form_for [ownership], method: :delete do |f| %>
                     <%= f.submit value: "Delete", class: "btn btn-danger center-block" %>
                   <% end %>
-                <% else %>
-                  <%= form_tag ownership_transfers_path(ownership), method: "post" do %>
-                    <%= submit_tag "I want it" , class: "btn btn-primary center-block" %>
-                  <% end %>
-                <% end %>
+                <%= link_to "Offer it", "", data: {id: ownership.id}, class: "open-update-ownership btn btn-primary center-block" %>
                 <%= link_to "Recommend it", new_book_recommendation_path(ownership.book), class: "btn btn-primary center-block" %>
               </div>
             </div>
@@ -55,3 +50,37 @@
     <p class="lead text-center">No books offered yet!</p>
   <% end %>
 </div>
+
+
+<div id="update-ownership" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Update offer</h4>
+      </div>
+      <div class="modal-body">
+        <form id="updated-offer">
+          <div class="form-group">
+            <label for="to-give-away">To give away</label>
+            <input type="checkbox" name="to-give-away" value="true">
+          </div>
+          <div class="form-group">
+            <label for="to-exchange">To exchange</label>
+            <input type="checkbox" name="to-exchange" value="true">
+          </div>
+          <input type="submit" name="submit" value="Offer" class="btn btn-primary">
+        </form>
+      </div>
+    </div>
+<!-- /.modal-content -->
+  </div>
+<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<script type="text/javascript">
+  window.bookOwnershipManager.initUpdate();
+</script>
