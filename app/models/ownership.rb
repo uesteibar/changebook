@@ -7,6 +7,11 @@ class Ownership < ActiveRecord::Base
   validates_presence_of :user_id, :book_id
 
   after_create :create_events
+  before_destroy :destroy_events
+
+  def offering?
+    to_give_away || to_exchange
+  end
 
   private
 
@@ -17,5 +22,10 @@ class Ownership < ActiveRecord::Base
         item_urn: "ownership:#{id}"
       )
     end
+  end
+
+  def destroy_events
+    events = Event.where(item_urn: "ownership:#{id}")
+    events.destroy_all
   end
 end
