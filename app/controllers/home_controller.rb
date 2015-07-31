@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
   def index
-    #code
+    if current_user
+      redirect_to "/timeline"
+    end
   end
 end
