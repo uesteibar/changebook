@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :authenticate_user!, except: [:all]
+  before_action :authenticate_user!, except: [:all, :search]
 
   def show
     @book = Book.find(params[:id])
@@ -22,7 +22,7 @@ class BooksController < ApplicationController
   end
 
   def search
-    books = Book.search_by_title(params[:term])
+    books = Book.search_offered_by_title(params[:term])
     render status: 200, json: books
   end
 
