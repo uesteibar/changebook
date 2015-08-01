@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
 
   has_many :events
 
+  has_many :notifications
+
   has_many :active_relationships, class_name:  "Following", foreign_key: "follower_id", dependent: :destroy
   has_many :passive_relationships, class_name:  "Following", foreign_key: "followed_id", dependent: :destroy
 
@@ -71,6 +73,16 @@ class User < ActiveRecord::Base
 
   def received_transfers
     Transfer.joins(:ownership).where("ownerships.user_id = ?", id)
+  end
+
+  def reject_tranfer_request(id)
+    request = received_transfers.find(id)
+    request.user.notifications.create(message: "#{username} rejected your transfer request")
+    request.destroy
+  end
+
+  def unread_notifications
+    notifications.where(read: false)
   end
 
   def self.search_by_username(term)

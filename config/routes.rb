@@ -13,12 +13,15 @@ Rails.application.routes.draw do
   resources :ownerships, only: [:new, :create, :update, :destroy] do
     resources :transfers, only: [:create]
   end
-  resources :transfers, only: [:index, :destroy]
+  resources :transfers, only: [:destroy]
   put "/transfers/:id/accept", to: "transfers#accept"
 
   resources :books, only: [:show, :create] do
     resources :recommendations, only: [:new, :create, :destroy]
   end
+
+  resources :notifications, only: [:index]
+  put "/notifications/:id/mark-read", to: "notifications#mark_read"
 
   resources :events, only: [:index]
 
