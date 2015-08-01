@@ -16,7 +16,11 @@ class Book < ActiveRecord::Base
   def self.search_by_title(title)
     where("UPPER(title) LIKE ?", "%#{title.upcase}%")
   end
-  
+
+  def self.search_offered_by_title(title)
+    joins(:ownerships).where("UPPER(title) LIKE ?", "%#{title.upcase}%").where("ownerships.to_give_away is true OR ownerships.to_exchange is true")
+  end
+
   def offerings
     ownerships.where("to_give_away is true OR to_exchange is true")
   end
