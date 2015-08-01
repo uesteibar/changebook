@@ -50,9 +50,6 @@
 
                   <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">
-                      <% if current_user.received_transfers.any? %>
-                      <span class="badge"><%= current_user.received_transfers.count %></span>
-                      <% end %>
                       <%= current_user.username %>
                       <span class="caret"></span>
                     </a>
@@ -61,8 +58,8 @@
                         <%= link_to "Profile", user_path(current_user) %>
                       </li>
                       <li>
-                        <% badge = "<span class='badge'>#{current_user.received_transfers.count}</span>" if current_user.received_transfers.any? %>
-                        <%= link_to raw("Book transfer #{badge}"), transfers_path %>
+                        <% badge = "<span class='badge'>#{current_user.received_transfers.count + current_user.unread_notifications.count}</span>" if current_user.received_transfers.any? || current_user.unread_notifications.any? %>
+                        <%= link_to raw("Notifications #{badge}"), notifications_path %>
                       </li>
                       <li>
                         <%= link_to "Edit profile", edit_user_path(current_user) %>

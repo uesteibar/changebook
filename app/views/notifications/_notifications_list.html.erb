@@ -1,0 +1,10 @@
+<% notifications.each do |notification| %>
+    <div class="card">
+      <p class="lead">
+        <%= notification.message %>
+      </p>
+      <%= form_tag "/notifications/#{notification.id}/mark-read", method: "put" do %>
+        <%= submit_tag "Mark as read" , class: "btn btn-danger" %>
+      <% end %>
+    </div>
+<% end %>

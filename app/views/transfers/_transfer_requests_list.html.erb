@@ -1,6 +1,5 @@
-<% @transfer_requests.each do |request| %>
-  <div class="row">
-    <div class="card col-md-6 col-md-offset-3">
+<% transfer_requests.each do |request| %>
+    <div class="card">
       <%= link_to request.user.username, user_path(request.user) %>
       requested you to transfer
       <%= link_to request.ownership.book.title, book_path(request.ownership.book) %>
@@ -8,6 +7,8 @@
       <%= form_tag "/transfers/#{request.id}/accept", method: "put" do %>
         <%= submit_tag "Accept" , class: "btn btn-primary" %>
       <% end %>
+      <%= form_tag transfer_path(request), method: "delete" do %>
+        <%= submit_tag "Reject" , class: "btn btn-danger" %>
+      <% end %>
     </div>
-  </div>
 <% end %>
