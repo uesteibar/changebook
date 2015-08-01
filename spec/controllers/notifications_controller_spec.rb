@@ -48,7 +48,7 @@ RSpec.describe NotificationsController, type: :controller do
     end
 
     context 'when the user is logged in' do
-      it 'create a new transfer request' do
+      it 'create a new notification when a transfer request is rejected' do
         expect do
           post :mark_read, id: @alaine.unread_notifications.last.id
         end.to change(@alaine.unread_notifications, :count).by(-1)
@@ -59,7 +59,7 @@ RSpec.describe NotificationsController, type: :controller do
       before(:each) do
         sign_out @alaine
       end
-      
+
       it 'redirects to root' do
         post :mark_read, id: @alaine.unread_notifications.last.id
         expect(response).to redirect_to('/login')
