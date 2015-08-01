@@ -12,7 +12,7 @@ class TransfersController < ApplicationController
   end
 
   def destroy
-    current_user.reject_tranfer_request(params[:id])
+    current_user.reject_transfer_request(params[:id])
     redirect_to notifications_path
   end
 end

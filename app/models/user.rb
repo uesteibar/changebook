@@ -75,7 +75,7 @@ class User < ActiveRecord::Base
     Transfer.joins(:ownership).where("ownerships.user_id = ?", id)
   end
 
-  def reject_tranfer_request(id)
+  def reject_transfer_request(id)
     request = received_transfers.find(id)
     request.user.notifications.create(message: "#{username} rejected your transfer request")
     request.destroy

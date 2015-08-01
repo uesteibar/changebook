@@ -5,19 +5,20 @@ RSpec.describe TransfersController, type: :controller do
     @uesteibar = create(:uesteibar)
     @uesteibar.confirm!
     sign_in @uesteibar
+
+    @alaine = create(:alaine)
+    @alaine.confirm!
+
+    @book = create(:book)
+    @uesteibar.ownerships.create(book_id: @book.id, to_give_away: true)
   end
 
-  describe 'GET #index' do
+  describe 'POST #create' do
     context 'when the user is logged in' do
-      it 'responds successfully with an HTTP 200 status code' do
-        get :index, user_id: @uesteibar.id
-        expect(response).to be_success
-        expect(response.code.to_i).to eq(200)
-      end
-
-      it 'renders the show template' do
-        get :index, user_id: @uesteibar.id
-        expect(response).to render_template('index')
+      it 'create a new transfer request' do
+        expect do
+          post :create, ownership_id: @uesteibar.ownerships.last.id
+        end.to change(@uesteibar.received_transfers, :count).by(1)
       end
     end
 
@@ -27,7 +28,7 @@ RSpec.describe TransfersController, type: :controller do
       end
 
       it 'redirects to root' do
-        get :index, user_id: @uesteibar.id
+        post :create, ownership_id: @uesteibar.ownerships.last.id
         expect(response).to redirect_to('/login')
       end
     end
