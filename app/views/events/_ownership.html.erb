@@ -18,8 +18,14 @@
         <% end %>
       </ul>
       <% if item.user.id != current_user.id %>
-        <%= form_tag ownership_transfers_path(item), method: "post" do %>
-          <%= submit_tag "I want it" , class: "btn btn-primary" %>
+        <% if current_user.sent_transfers.find_by(ownership_id: item.id) %>
+          <p>
+            Transfer request sent. Waiting for response.
+          </p>
+        <% else %>
+          <%= form_tag ownership_transfers_path(item), method: "post" do %>
+            <%= submit_tag "I want it" , class: "btn btn-primary" %>
+          <% end %>
         <% end %>
       <% end %>
     </p>
