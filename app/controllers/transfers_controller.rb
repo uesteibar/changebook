@@ -14,4 +14,9 @@ class TransfersController < ApplicationController
     current_user.received_transfers.find(params[:id]).accept!
     redirect_to user_path(current_user)
   end
+
+  def destroy
+    current_user.received_transfers.find(params[:id]).destroy
+    redirect_to transfers_path
+  end
 end

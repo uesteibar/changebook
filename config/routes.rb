@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :ownerships, only: [:new, :create, :update, :destroy] do
     resources :transfers, only: [:create]
   end
-  resources :transfers, only: [:index]
+  resources :transfers, only: [:index, :destroy]
   put "/transfers/:id/accept", to: "transfers#accept"
 
   resources :books, only: [:show, :create] do

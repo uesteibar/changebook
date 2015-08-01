@@ -8,6 +8,9 @@
       <%= form_tag "/transfers/#{request.id}/accept", method: "put" do %>
         <%= submit_tag "Accept" , class: "btn btn-primary" %>
       <% end %>
+      <%= form_tag transfer_path(request), method: "delete" do %>
+        <%= submit_tag "Reject" , class: "btn btn-danger" %>
+      <% end %>
     </div>
   </div>
 <% end %>
