@@ -24,6 +24,16 @@ run the migrations
 rake db:migrate
 ```
 
+install elasticsearch
+```
+brew install elasticsearch
+```
+
+run the elasticsearch server
+```
+elasticsearch
+```
+
 run the server
 ```
 rails s

@@ -3,6 +3,6 @@ class SearchController < ApplicationController
 
   def search
     @users = User.search_by_username(params[:term])
-    @books = Book.search_by_title(params[:term])
+    @books = BooksElasticsearch.new.search(params[:term])
   end
 end
