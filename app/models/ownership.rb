@@ -9,6 +9,8 @@ class Ownership < ActiveRecord::Base
   after_create :create_events
   before_destroy :destroy_events
 
+  after_save :index_elasticsearch
+
   def offering?
     to_give_away || to_exchange
   end
@@ -25,5 +27,11 @@ class Ownership < ActiveRecord::Base
   def destroy_events
     events = Event.where(item_urn: "ownership:#{id}")
     events.destroy_all
+  end
+
+  private
+
+  def index_elasticsearch
+    OwnershipssElasticsearch.new.index(self)
   end
 end
