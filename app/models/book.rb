@@ -13,6 +13,8 @@ class Book < ActiveRecord::Base
 
   validates_presence_of :title, :author
 
+  after_save :index_elasticsearch
+
   def self.search_by_title(title)
     where("UPPER(title) LIKE ?", "%#{title.upcase}%")
   end
@@ -27,6 +29,12 @@ class Book < ActiveRecord::Base
 
   def offerings_count
     ownerships.where("to_give_away is true OR to_exchange is true").count
+  end
+
+  private
+
+  def index_elasticsearch
+    BooksElasticsearch.new.index(self)
   end
 
 end
