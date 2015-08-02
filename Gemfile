@@ -48,6 +48,10 @@ gem 'aws-sdk', '< 2.0'
 # predictive search
 gem 'twitter-typeahead-rails'
 
+# elasticsearch
+gem 'elasticsearch'
+gem 'elasticsearch-api', git: 'git://github.com/elasticsearch/elasticsearch-ruby.git'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
