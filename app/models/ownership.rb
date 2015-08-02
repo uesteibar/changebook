@@ -32,6 +32,6 @@ class Ownership < ActiveRecord::Base
   private
 
   def index_elasticsearch
-    BooksElasticsearch.new.index(self)
+    OwnershipssElasticsearch.new.index(self)
   end
 end
