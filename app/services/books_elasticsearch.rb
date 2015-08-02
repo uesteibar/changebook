@@ -4,7 +4,11 @@ class BooksElasticsearch
   end
 
   def index(book)
-    @client.index  index: 'book', type: 'books', id: book.id, body: { title: book.title, author: book.author }
+    @client.index  index: 'book', type: 'books', id: book.id, body: {
+      id: book.id,
+      title: book.title,
+      author: book.author
+    }
   end
 
   def search(term)
@@ -12,12 +16,13 @@ class BooksElasticsearch
       {
         bool: {
           should: [
-            { match: { title: term } },
-            { match: { author: term } }
+            { match: { title: { query: term, boost: 1.5 } } },
+            { match: { author: { query: term, boost: 1 } } }
           ]
         }
       }
     }
+    debugger
     results["hits"]["hits"].map do |result|
       Book.find(result["_id"])
     end
