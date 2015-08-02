@@ -37,6 +37,8 @@ class OwnershipsElasticsearch
         }
       }
     }
-    debugger
+    results["hits"]["hits"].map do |result|
+      Ownership.find(result["_id"])
+    end
   end
 end
