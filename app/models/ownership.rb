@@ -10,6 +10,7 @@ class Ownership < ActiveRecord::Base
   before_destroy :destroy_events
 
   after_save :index_elasticsearch
+  before_destroy :destroy_elasticsearch
 
   def offering?
     to_give_away || to_exchange
@@ -32,6 +33,10 @@ class Ownership < ActiveRecord::Base
   private
 
   def index_elasticsearch
-    OwnershipssElasticsearch.new.index(self)
+    OwnershipsElasticsearch.new.index(self)
+  end
+
+  def destroy_elasticsearch
+    OwnershipsElasticsearch.new.destroy(self)
   end
 end

@@ -1,11 +1,12 @@
 class OwnershipsElasticsearch
   def initialize
     @client = Elasticsearch::Client.new log: true
+    @index = "ownership"
+    @type = "ownerships"
   end
 
   def index(ownership)
-    debugger
-    @client.index  index: 'ownership', type: 'ownerships', id: ownership.id, body: {
+    @client.index  index: @index, type: @type, id: ownership.id, body: {
       book_title: ownership.book.title,
       book_id: ownership.book.id,
       offering: ownership.to_give_away || ownership.to_exchange,
@@ -17,7 +18,7 @@ class OwnershipsElasticsearch
   end
 
   def search_offering(lat: lat, lon: lon, distance: 10)
-    results = @client.search index: 'ownership', type: "ownerships", body: { query: {
+    results = @client.search index: @index, type: @type, body: { query: {
         filtered: {
           query: {
             term: {
@@ -40,5 +41,9 @@ class OwnershipsElasticsearch
     results["hits"]["hits"].map do |result|
       Ownership.find(result["_id"])
     end
+  end
+
+  def destroy(book)
+    @client.delete index: @index, type: @type, id: book.id
   end
 end

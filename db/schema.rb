@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150801153641) do
+ActiveRecord::Schema.define(version: 20150802203439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,10 @@ ActiveRecord::Schema.define(version: 20150801153641) do
     t.string   "cover_content_type"
     t.integer  "cover_file_size"
     t.datetime "cover_updated_at"
+    t.integer  "genre_id",           null: false
   end
+
+  add_index "books", ["genre_id"], name: "index_books_on_genre_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.integer  "user_id"
@@ -44,6 +47,12 @@ ActiveRecord::Schema.define(version: 20150801153641) do
   add_index "followings", ["followed_id"], name: "index_followings_on_followed_id", using: :btree
   add_index "followings", ["follower_id", "followed_id"], name: "index_followings_on_follower_id_and_followed_id", unique: true, using: :btree
   add_index "followings", ["follower_id"], name: "index_followings_on_follower_id", using: :btree
+
+  create_table "genres", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "notifications", force: :cascade do |t|
     t.integer  "user_id"

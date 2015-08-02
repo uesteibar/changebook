@@ -4,6 +4,7 @@ class OwnershipsController < ApplicationController
   def new
     @book = current_user.books.new
     @ownership = current_user.ownerships.new
+    @genres = Genre.all
   end
 
   def create
