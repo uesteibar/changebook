@@ -5,8 +5,14 @@ RSpec.describe Book, type: :model do
     @user = create(:uesteibar)
     @book_params = {
       title: "The Lord Of The Rings",
-      author: "J.R.R. Tolkien"
+      author: "J.R.R. Tolkien",
+      genre_id: Genre.create(name: "Fantasy").id
     }
+  end
+
+  after(:each) do
+    Book.destroy_all
+    Ownership.destroy_all
   end
 
   describe 'create' do

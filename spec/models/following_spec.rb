@@ -9,6 +9,11 @@ RSpec.describe Following, type: :model do
     @alaine.confirm!
   end
 
+  after(:each) do
+    Book.destroy_all
+    Ownership.destroy_all
+  end
+
   describe 'user follows other user' do
     it 'should create a follower - followed reference between users' do
       @uesteibar.follow(@alaine)

@@ -4,6 +4,8 @@ FactoryGirl.define do
     email 'uesteibar@live.com'
     password 'uesteibar'
     password_confirmation 'uesteibar'
+    latitude 43
+    longitude (-2)
   end
 
   factory :alaine, class: User do
@@ -11,6 +13,8 @@ FactoryGirl.define do
     email 'alaine@live.com'
     password 'alainealaine'
     password_confirmation 'alainealaine'
+    latitude 43
+    longitude (-2)
   end
 
   factory :alen, class: User do
@@ -18,5 +22,7 @@ FactoryGirl.define do
     email 'alenesteibar@live.com'
     password 'alenalen'
     password_confirmation 'alenalen'
+    latitude 43
+    longitude (-2)
   end
 end

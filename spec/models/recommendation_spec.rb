@@ -8,6 +8,11 @@ RSpec.describe Recommendation, type: :model do
     @comment = "I loved it!"
   end
 
+  after(:each) do
+    Book.destroy_all
+    Ownership.destroy_all
+  end
+
   describe 'create' do
     it 'should create a recommendation when all params are given' do
       @user.recommend(@book, @comment)

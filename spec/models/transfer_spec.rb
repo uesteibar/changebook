@@ -12,6 +12,11 @@ RSpec.describe Transfer, type: :model do
     @uesteibar.ownerships.create(book_id: @book.id, to_give_away: true)
   end
 
+  after(:each) do
+    Book.destroy_all
+    Ownership.destroy_all
+  end
+
   describe '#request_transfer' do
     it 'should create a transfer request' do
       transfer = @alaine.request_transfer(@uesteibar.ownerships.last)

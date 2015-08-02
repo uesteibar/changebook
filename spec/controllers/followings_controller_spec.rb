@@ -10,6 +10,11 @@ RSpec.describe FollowingsController, type: :controller do
     @alaine.confirm!
   end
 
+  after(:each) do
+    Book.destroy_all
+    Ownership.destroy_all
+  end
+
   describe "POST #create" do
     it "responds successfully with an HTTP 201 status code" do
       post :create, id: @alaine.id

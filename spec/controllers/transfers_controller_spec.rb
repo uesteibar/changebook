@@ -13,6 +13,11 @@ RSpec.describe TransfersController, type: :controller do
     @uesteibar.ownerships.create(book_id: @book.id, to_give_away: true)
   end
 
+  after(:each) do
+    Book.destroy_all
+    Ownership.destroy_all
+  end
+
   describe 'POST #create' do
     context 'when the user is logged in' do
       it 'create a new transfer request' do
