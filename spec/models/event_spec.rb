@@ -20,12 +20,12 @@ RSpec.describe Event, type: :model do
     context 'when recommending a book' do
       it 'should create an event on every follower' do
         expect do
-          @uesteibar.recommend(@book, 'I loved it!')
+          @uesteibar.recommend(@book, 'I loved it!', 50)
         end.to change(@alaine.events, :count).by(1)
       end
 
       it 'should create an event with the correct URN on every follower' do
-        recommendation = @uesteibar.recommend(@book, 'I loved it!')
+        recommendation = @uesteibar.recommend(@book, 'I loved it!', 50)
         expect(@alaine.events.last.item_urn).to eq "recommendation:#{recommendation.id}"
       end
     end

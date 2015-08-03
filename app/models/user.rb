@@ -61,8 +61,8 @@ class User < ActiveRecord::Base
     recommendations.where(book_id: book.id).any?
   end
 
-  def recommend(book, comment)
-    recommendations.create(book_id: book.id, comment: comment)
+  def recommend(book, comment, valoration)
+    recommendations.create(book_id: book.id, comment: comment, valoration: valoration)
   end
 
   def offerings
