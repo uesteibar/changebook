@@ -1,0 +1,26 @@
+{
+  "mappings": {
+    "books": {
+      "dynamic": "false",
+      "properties": {
+        "title": {
+          "type": "string",
+          "analyzer": "english"
+        },
+        "author": {
+          "type": "string",
+          "analyzer": "english"
+        },
+        "genre_id": {
+          "type": "long"
+        },
+        "genre": {
+          "type": "string"
+        },
+        "locations": {
+          "type": "geo_point"
+        }
+      }
+    }
+  }
+}

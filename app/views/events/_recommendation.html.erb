@@ -5,12 +5,11 @@
 
   <div class="card-content">
     <p>
-      <%= link_to "#{item.user.username}", user_path(item.user) %>
+      <%= link_to item.user.username, user_path(item.user) %>
       recommended
-      <%= link_to "#{item.book.title}", book_path(item.book) %>
+      <%= link_to item.book.title, book_path(item.book) %>
       with a valoration of <%= item.valoration %>
     </p>
-
       <p class="lead">
         "<%= item.comment %>"
       </p>

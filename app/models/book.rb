@@ -15,7 +15,7 @@ class Book < ActiveRecord::Base
 
   validates_presence_of :title, :author
 
-  after_save :index_elasticsearch
+  after_commit :index_elasticsearch
   before_destroy :destroy_elasticsearch
 
   def self.search_by_title(title)
