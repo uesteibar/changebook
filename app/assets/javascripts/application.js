@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require twitter/typeahead.min
+//= require bootstrap-multiselect
 //= require handlebars
 //= require_tree .
 

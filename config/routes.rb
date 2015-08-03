@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   devise_for :users, path: "",
                     path_names: {sign_in: "login", sign_up: "signup", sign_out: "logout"}
 
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update] do
+    resources :liked_genres, only: [:create]
+  end
 
 
   resources :ownerships, only: [:new, :create, :update, :destroy] do
