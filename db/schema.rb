@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150802203439) do
+ActiveRecord::Schema.define(version: 20150802222315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,16 @@ ActiveRecord::Schema.define(version: 20150802203439) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "liked_genres", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "genre_id",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "liked_genres", ["genre_id"], name: "index_liked_genres_on_genre_id", using: :btree
+  add_index "liked_genres", ["user_id"], name: "index_liked_genres_on_user_id", using: :btree
 
   create_table "notifications", force: :cascade do |t|
     t.integer  "user_id"

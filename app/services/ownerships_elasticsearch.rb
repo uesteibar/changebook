@@ -9,6 +9,7 @@ class OwnershipsElasticsearch
     @client.index  index: @index, type: @type, id: ownership.id, body: {
       book_title: ownership.book.title,
       book_id: ownership.book.id,
+      book_genre_id: ownership.book.genre.id,
       offering: ownership.to_give_away || ownership.to_exchange,
       location: {
         lat: ownership.user.latitude,
