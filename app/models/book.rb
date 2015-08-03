@@ -34,6 +34,10 @@ class Book < ActiveRecord::Base
     ownerships.where("to_give_away is true OR to_exchange is true").count
   end
 
+  def valoration
+    recommendations.average(:valoration)
+  end
+
   private
 
   def index_elasticsearch
