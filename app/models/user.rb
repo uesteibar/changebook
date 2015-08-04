@@ -103,8 +103,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.search_by_username(term)
-    where("username LIKE ?", "%#{term}%")
+  def self.search_by_username(term, limit = 10)
+    where("username LIKE ?", "%#{term}%").limit(10)
   end
 
 end

@@ -1,12 +1,18 @@
 $(document).ready(function() {
   $('.thank-recommendation').on('click', function(event) {
     event.preventDefault();
-    var recommendationId = $(event.target).data('id');
+    var button = $(event.target);
+    var recommendationId = button.data('id');
+    button.toggleClass('btn-submiting', true);
+
 
     var request = $.post('/recommendations/' + recommendationId + '/thank');
     request.done(function(response) {
-      $('.thanks-count[data-id=' + recommendationId + ']').text(response + ' thanks');
-      $(event.target).toggle(false);
+      button.text(response + ' thanks');
+      button.toggleClass('btn-submiting', false);
+      button.toggleClass('btn-successful', true);
+      button.prop("disabled",true);
+      // $(event.target).toggle(false);
     });
   });
 });

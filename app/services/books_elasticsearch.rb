@@ -20,8 +20,8 @@ class BooksElasticsearch
     }
   end
 
-  def search(term)
-    results = @client.search index: @index, type: @type, body: { query:
+  def search(term, limit = 10)
+    results = @client.search index: @index, type: @type, size: limit, body: { query:
       {
         bool: {
           should: [

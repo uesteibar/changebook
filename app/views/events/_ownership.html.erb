@@ -23,9 +23,7 @@
             Transfer request sent. Waiting for response.
           </p>
         <% else %>
-          <%= form_tag ownership_transfers_path(item), method: "post" do %>
-            <%= submit_tag "I want it" , class: "btn btn-primary" %>
-          <% end %>
+          <button data-id="<%= item.id %>" type="button" class="btn btn-primary request-transfer" name="button">I want it</button>
         <% end %>
       <% end %>
     </p>

@@ -8,6 +8,7 @@ var BookPredictor = function(bookRetriever) {
 BookPredictor.prototype.init = function(selector) {
   this.bookRetriever.fetchAll(function(books) {
     this.books = books;
+    console.log(books);
     var titles = new Bloodhound({
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title'),
       queryTokenizer: Bloodhound.tokenizers.whitespace,

@@ -1,7 +1,8 @@
 
-
-<p class="thanks-count" data-id="<%= recommendation.id %>"><%= recommendation.thanks.count %> thanks
-  <% if current_user.id != recommendation.user.id && !current_user.thanked?(recommendation) %>
-    <%= link_to "Thank", "", class: "thank-recommendation", "data-id": recommendation.id %>
-  <% end %>
-</p>
+<div class="thank-container">
+    <% if current_user.id != recommendation.user.id && !current_user.thanked?(recommendation) %>
+      <button data-id="<%= recommendation.id %>" type="button" class="btn btn-primary btn-sm thank-recommendation" name="button">Thank!</button>
+    <% else %>
+      <button data-id="<%= recommendation.id %>" type="button" class="btn btn-primary btn-sm thank-recommendation btn-successful" disabled="true" name="button"><%= pluralize(recommendation.thanks.count, "thank") %></button>
+    <% end %>
+</div>
