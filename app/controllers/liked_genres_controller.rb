@@ -7,6 +7,9 @@ class LikedGenresController < ApplicationController
         LikedGenre.create(genre_id: genre_id, user_id: @user.id)
       end
       @user.save
+      render status: 201, json: @user
+      return
     end
+    render status: 400, body: "Error"
   end
 end

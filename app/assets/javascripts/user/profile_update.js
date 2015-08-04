@@ -29,7 +29,15 @@ function profile_update_initialize() {
 
   $('#update-genres').on('click', function(event) {
     event.preventDefault();
-    $.post('/users/' + userId + '/liked_genres', {liked_genres_ids: selected_genres});
+    $('#update-genres').toggleClass('btn-submiting', true);
+    var request = $.post('/users/' + userId + '/liked_genres', {liked_genres_ids: selected_genres});
+    request.done(function(res) {
+      $('#update-genres').toggleClass('btn-submiting', false);
+      $('#update-genres').toggleClass('btn-successful', true);
+      setTimeout(function () {
+        $('#update-genres').toggleClass('btn-successful', false);
+      }, 2000);
+    });
   });
 
 }
