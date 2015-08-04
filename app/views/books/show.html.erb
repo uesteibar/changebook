@@ -13,6 +13,13 @@
           <p>
             <%= pluralize(@book.offerings_count, "user") %> offer this book.
           </p>
+          <p>
+            <% if @book.valoration %>
+              Valoration: <%= @book.valoration %>
+            <% else %>
+              No valorations yet.
+            <% end %>
+          </p>
           <div class="center-block">
             <%= link_to "Recommend it", new_book_recommendation_path(@book), class: "center-block btn btn-primary" %>
           </div>
