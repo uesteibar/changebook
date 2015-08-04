@@ -1,5 +1,5 @@
 var BookRetriever = function() {
-  this.baseUrl = '/api/books';
+  this.baseUrl = '/books';
 };
 
 BookRetriever.prototype.fetchAll = function (callback) {

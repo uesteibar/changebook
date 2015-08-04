@@ -1,24 +1,22 @@
 class BooksController < ApplicationController
-  before_action :authenticate_user!, except: [:all, :search]
+  before_action :authenticate_user!, except: [:search]
+
+  def index
+    @books = Book.all
+    render status: 200, json: @books
+  end
 
   def show
     @book = Book.find(params[:id])
-    @offering_count = @book.offerings_count
+    respond_to do |format|
+      format.html
+      format.json { render status: 200, json: @book }
+    end
   end
 
   def create
     Book.create(book_params)
     redirect_to new_ownership_path
-  end
-
-  def all
-    books = Book.all
-    render status: 200, json: books
-  end
-
-  def one
-    book = Book.find(params[:id])
-    render status: 200, json: book
   end
 
   def search
