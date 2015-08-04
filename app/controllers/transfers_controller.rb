@@ -2,12 +2,14 @@ class TransfersController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    current_user.request_transfer(Ownership.find(params[:ownership_id]))
+    ownership_to_transfer = Ownership.find(params[:ownership_id])
+    current_user.request_transfer(ownership_to_transfer)
     redirect_to "/"
   end
 
   def accept
-    current_user.received_transfers.find(params[:id]).accept!
+    transfer_to_accept = current_user.received_transfers.find(params[:id])
+    transfer_to_accept.accept!
     redirect_to user_path(current_user)
   end
 

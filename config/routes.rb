@@ -5,9 +5,13 @@ Rails.application.routes.draw do
   get "/dashboard", to: "dashboard#index"
 
   devise_for :users, path: "",
-                    path_names: {sign_in: "login", sign_up: "signup", sign_out: "logout"}
+  path_names: {sign_in: "login", sign_up: "signup", sign_out: "logout"}
 
   resources :users, only: [:show, :edit, :update] do
+    member do
+      post "follow", to: "followings#create"
+      delete "unfollow", to: "followings#destroy"
+    end
     resources :liked_genres, only: [:create]
   end
 
@@ -27,11 +31,11 @@ Rails.application.routes.draw do
   resources :events, only: [:index]
 
   get "/search", to: "search#search"
-  get "/api/books", to: "books#all"
-  get "/api/books/:id", to: "books#one"
-  get "/api/books/search/:term", to: "books#search"
 
-  post "/users/:id/follow", to: "followings#create"
-  delete "/users/:id/unfollow", to: "followings#destroy"
+  namespace :api do
+    namespace :v1 do
+      get "search", to: "books#search"
+    end
+  end
 
 end

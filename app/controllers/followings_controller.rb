@@ -2,12 +2,14 @@ class FollowingsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    current_user.follow(User.find(params[:id]))
+    user_to_follow = User.find(params[:id])
+    current_user.follow(user_to_follow)
     render status: 201, body: "created"
   end
 
   def destroy
-    current_user.unfollow(User.find(params[:id]))
+    user_to_unfollow = User.find(params[:id])
+    current_user.unfollow(user_to_unfollow)
     render status: 200, body: "destroyed"
   end
 end

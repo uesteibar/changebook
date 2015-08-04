@@ -8,28 +8,28 @@ RSpec.describe "Followings", type: :request do
 
   describe "POST /users/:id/follow" do
     skip "responses with http status 200" do
-      post "/users/#{@alaine.id}/follow", format: :json
+      post follow_user_path(@alaine), format: :json
 
       expect(response).to have_http_status(201)
     end
 
     skip "follows the given user" do
       expect do
-        post "/users/#{@alaine.id}/follow", format: :json
+        post follow_user_path(@alaine), format: :json
       end.to change(Following, :count).by(1)
     end
   end
 
   describe "DELETE /users/:id/unfollow" do
     skip "responses with http status 200" do
-      delete "/users/#{@alaine.id}/unfollow", format: :json
+      delete unfollow_user_path(@alaine), format: :json
 
       expect(response).to have_http_status(200)
     end
 
     skip "unfollows the given user" do
       expect do
-        delete "/users/#{@alaine.id}/unfollow", format: :json
+        delete unfollow_user_path(@alaine), format: :json
       end.to change(Following, :count).by(-1)
     end
   end
