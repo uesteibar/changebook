@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   get "/", to: "home#index"
 
-  get "/timeline", to: "events#index"
+  get "/dashboard", to: "dashboard#index"
 
   devise_for :users, path: "",
                     path_names: {sign_in: "login", sign_up: "signup", sign_out: "logout"}
@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update] do
     resources :liked_genres, only: [:create]
   end
-
 
   resources :ownerships, only: [:new, :create, :update, :destroy] do
     resources :transfers, only: [:create]
