@@ -76,6 +76,10 @@ $danger_color: #d34c4a;
   opacity: 0.7;
 }
 
+.btn-primary:focus {
+  background-color: $base_color;
+}
+
 @keyframes loading {
   100%{
     transform: rotate(360deg);
