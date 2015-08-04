@@ -36,7 +36,7 @@
 
                 <ul class="nav navbar-nav navbar-right">
                   <% if current_user %>
-                  <form action="/search" class="navbar-form navbar-left" method="GET">
+                  <form action="<%= search_path %>" class="navbar-form navbar-left" method="GET">
                     <div class="form-group">
                       <input class="form-control" id="user-search" name="term" placeholder="Search..." type="text">
                     </div>

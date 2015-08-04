@@ -9,9 +9,9 @@ RSpec.describe "Followings", type: :request do
     sign_in @uesteibar
   end
 
-  describe 'GET /api/books' do
+  describe 'GET /books' do
     skip 'should return all the books' do
-      get "/api/books", format: :json
+      get books_path, format: :json
       puts response.body
       expect(JSON.parse(response.body).length).to eq 2
     end
