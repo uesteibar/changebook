@@ -1,5 +1,5 @@
 var BookRetriever = function() {
-  this.baseUrl = '/books';
+  this.baseUrl = '/api/v1/books';
 };
 
 BookRetriever.prototype.fetchAll = function (callback) {
@@ -8,7 +8,7 @@ BookRetriever.prototype.fetchAll = function (callback) {
 };
 
 BookRetriever.prototype.search = function (term, callback) {
-  var request = $.get(this.baseUrl + '/search/' + term);
+  var request = $.get(this.baseUrl + '/search', {term: term});
   request.done(callback);
 };
 
