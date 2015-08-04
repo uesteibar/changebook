@@ -1,6 +1,6 @@
 module Api
   module V1
-    class CatsController < ApplicationController
+    class BooksController < ApplicationController
       def search
         books = Book.search_offered_by_title(params[:term])
 

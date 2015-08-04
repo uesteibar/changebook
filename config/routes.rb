@@ -36,7 +36,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      get "search", to: "books#search"
+      get "books/search", to: "books#search"
     end
   end
 
