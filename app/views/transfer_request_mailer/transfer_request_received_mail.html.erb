@@ -1,0 +1,13 @@
+<h1>Hello <%= @user.username %>!</h1>
+
+<p>
+  You have a new tranfer request from <%= @transfer_request.user.username %> about <%= @transfer_request.ownership.book.title %>.
+</p>
+
+<p>
+  If you want to check your last notifications and requests, you can use the following <a href="https://changebook.herokuapp.com/notifications">LINK</a>
+</p>
+
+<p>
+  Happy reading, and see you soon!
+</p>

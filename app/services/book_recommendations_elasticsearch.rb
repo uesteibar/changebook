@@ -1,7 +1,12 @@
 class BookRecommendationsElasticsearch
   def initialize
-    @client = Elasticsearch::Client.new log: true
+    if ENV['SEARCHBOX_SSL_URL']
+      @client = Elasticsearch::Client.new host: ENV['SEARCHBOX_SSL_URL']
+    else
+      @client = Elasticsearch::Client.new log: true
+    end
   end
+
   def recommend(genre_ids: genre_ids, location: location, distance: distance, limit: limit)
     @client.search index: "book", type: "books", size: limit, body: { query:
       {

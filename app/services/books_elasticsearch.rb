@@ -1,6 +1,10 @@
 class BooksElasticsearch
   def initialize
-    @client = Elasticsearch::Client.new log: true
+    if ENV['SEARCHBOX_SSL_URL']
+      @client = Elasticsearch::Client.new host: ENV['SEARCHBOX_SSL_URL']
+    else
+      @client = Elasticsearch::Client.new log: true
+    end
     @index = "book"
     @type = "books"
   end
