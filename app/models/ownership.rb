@@ -1,6 +1,6 @@
 class Ownership < ActiveRecord::Base
   belongs_to :user
-  belongs_to :book
+  belongs_to :book, touch: true
 
   has_many :transfers
 

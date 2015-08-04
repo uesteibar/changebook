@@ -12,7 +12,7 @@ class BooksElasticsearch
       genre_id: book.genre.id,
       genre: book.genre.name,
       valoration: book.valoration,
-      locations: book.ownerships.map { |ownership| {lat: ownership.user.latitude, lon: ownership.user.longitude} }
+      locations: book.offerings.map { |ownership| {lat: ownership.user.latitude, lon: ownership.user.longitude} }
     }
   end
 
