@@ -1,0 +1,11 @@
+$base_color: #295837;
+
+a {
+  color: $base_color;
+  transition: 0.5s all;
+}
+
+a:hover {
+  color: lighten($base_color, 10);
+  text-decoration: none;
+}
