@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
 
   has_many :notifications
 
+  has_many :liked_genres
+
   has_many :active_relationships, class_name:  "Following", foreign_key: "follower_id", dependent: :destroy
   has_many :passive_relationships, class_name:  "Following", foreign_key: "followed_id", dependent: :destroy
 
@@ -59,8 +61,8 @@ class User < ActiveRecord::Base
     recommendations.where(book_id: book.id).any?
   end
 
-  def recommend(book, comment)
-    recommendations.create(book_id: book.id, comment: comment)
+  def recommend(book, comment, valoration)
+    recommendations.create(book_id: book.id, comment: comment, valoration: valoration)
   end
 
   def offerings
@@ -83,6 +85,10 @@ class User < ActiveRecord::Base
 
   def unread_notifications
     notifications.where(read: false)
+  end
+
+  def likes_genre?(genre)
+    liked_genres.find_by(genre_id: genre.id).present?
   end
 
   def self.search_by_username(term)

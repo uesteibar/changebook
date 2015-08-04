@@ -7,7 +7,7 @@ class RecommendationsController < ApplicationController
 
   def create
     book = Book.find(params[:book_id])
-    current_user.recommend(book, recommendation_params[:comment])
+    current_user.recommend(book, recommendation_params[:comment], recommendation_params[:valoration])
     redirect_to user_path(current_user)
   end
 
@@ -20,6 +20,6 @@ class RecommendationsController < ApplicationController
   private
 
   def recommendation_params
-    params.require(:recommendation).permit(:comment)
+    params.require(:recommendation).permit(:comment, :valoration)
   end
 end

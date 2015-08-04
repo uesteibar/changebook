@@ -8,4 +8,28 @@ function profile_update_initialize() {
     $('#latitude').val(location.G);
     $('#longitude').val(location.K);
   });
+
+  var selected_genres = [];
+
+  $('#genres-selection').multiselect({
+    onChange: function(option, checked, select) {
+                if (checked) {
+                  selected_genres.push($(option).val());
+                } else {
+                  selected_genres.splice(selected_genres.indexOf($(option).val()), 1);
+                }
+            }
+  });
+
+  var userId = $('#genres-selection').data('user-id');
+
+  $('option[selected]').each(function(index, el) {
+    selected_genres.push($(el).val());
+  });
+
+  $('#update-genres').on('click', function(event) {
+    event.preventDefault();
+    $.post('/users/' + userId + '/liked_genres', {liked_genres_ids: selected_genres});
+  });
+
 }

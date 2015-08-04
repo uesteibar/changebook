@@ -5,7 +5,8 @@ RSpec.describe Book, type: :model do
     @user = create(:uesteibar)
     @book_params = {
       title: "The Lord Of The Rings",
-      author: "J.R.R. Tolkien"
+      author: "J.R.R. Tolkien",
+      genre_id: Genre.create(name: "Fantasy").id
     }
   end
 

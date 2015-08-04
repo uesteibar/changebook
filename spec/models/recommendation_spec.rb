@@ -6,11 +6,12 @@ RSpec.describe Recommendation, type: :model do
     @user.confirm!
     @book = create(:book)
     @comment = "I loved it!"
+    @valoration = 50
   end
 
   describe 'create' do
     it 'should create a recommendation when all params are given' do
-      @user.recommend(@book, @comment)
+      @user.recommend(@book, @comment, @valoration)
       expect(@user.recommendations.last.book).to eq @book
       expect(@user.recommendations.last.comment).to eq @comment
     end

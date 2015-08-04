@@ -24,9 +24,7 @@
                   <span class="icon-bar"></span>
                 </button>
                 <% if current_user %>
-                <a class="navbar-brand" href="/timeline">
-                  ChangeBook!
-                </a>
+                <%= link_to "ChangeBook!", dashboard_path, class: "navbar-brand" %>
                 <% else %>
                 <a class="navbar-brand" href="/">
                   ChangeBook!
