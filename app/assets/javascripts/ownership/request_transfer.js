@@ -8,7 +8,7 @@ $(document).ready(function() {
     $.post('/ownerships/' + ownershipId + '/transfers', function(data, textStatus, xhr) {
       button.toggleClass('btn-submiting', false);
       button.toggleClass('btn-successful', true);
-      button.text('Sent');
+      button.text('Requested');
       button.prop("disabled",true);
     });
   });
