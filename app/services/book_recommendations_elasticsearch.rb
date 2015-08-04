@@ -27,8 +27,7 @@ class BookRecommendationsElasticsearch
             field_value_factor: {
               field: "valoration",
               factor: 0.5,
-              modifier: "sqrt",
-              missing: 1
+              modifier: "sqrt"
             },
             weight: 0.5
           },
