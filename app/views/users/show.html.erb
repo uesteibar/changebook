@@ -23,6 +23,13 @@
           <span aria-hidden="true" class="glyphicon glyphicon-map-marker"></span>
           <%= @user.location %>
         </p>
+        <p class="text-center">
+          Reputation: <%= @user.reputation %>
+        </p>
+
+        <p class="text-center">
+          <%= link_to "Email me!", "mailto:#{@user.email}" %>
+        </p>
 
         <p class="lead text-center">
           <%= @user.bio %>

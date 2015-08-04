@@ -10,7 +10,7 @@ class BookRecommendations
       distance: distance,
       limit: limit
     )
-    
+
     results["hits"]["hits"].map do |result|
       Book.find(result["_id"])
     end

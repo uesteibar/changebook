@@ -1,0 +1,7 @@
+
+
+<p class="thanks-count" data-id="<%= recommendation.id %>"><%= recommendation.thanks.count %> thanks
+  <% if current_user.id != recommendation.user.id && !current_user.thanked?(recommendation) %>
+    <%= link_to "Thank", "", class: "thank-recommendation", "data-id": recommendation.id %>
+  <% end %>
+</p>

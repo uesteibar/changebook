@@ -21,9 +21,11 @@ Rails.application.routes.draw do
   resources :transfers, only: [:destroy]
   put "/transfers/:id/accept", to: "transfers#accept"
 
-  resources :books, only: [:show, :create] do
+  resources :books, only: [:index, :show, :create] do
     resources :recommendations, only: [:new, :create, :destroy]
   end
+
+  post "/recommendations/:id/thank", to: "thanks#create"
 
   resources :notifications, only: [:index]
   put "/notifications/:id/mark-read", to: "notifications#mark_read"

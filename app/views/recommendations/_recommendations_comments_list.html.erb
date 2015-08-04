@@ -14,7 +14,10 @@
             <%= recommendation.comment %>
           </p>
           <p>
-            Valoration: <%= recommendation.valoration %>
+            Valoration: <%= recommendation.valoration.round(2) %>
+          </p>
+          <p>
+            <%= render "layouts/recommendation_likes", recommendation: recommendation %>
           </p>
         </div>
         <% if recommendations.size > index + 1 %>
