@@ -14,5 +14,8 @@
         "<%= item.comment %>"
       </p>
       <p><%= item.created_at.to_formatted_s(:short) %></p>
+
+      <p><%= link_to "Thank", "", class: "thank-recommendation", "data-id": item.id %></p>
+      <p class="thanks-count" data-id="<%= item.id %>"><%= item.thanks.count %> thanks</p>
   </div>
 </div>

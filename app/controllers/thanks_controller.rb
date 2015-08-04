@@ -4,6 +4,6 @@ class ThanksController < ApplicationController
   def create
     recommendation = Recommendation.find(params[:id])
     recommendation.thanks.create(user: current_user)
-    render status: 201, json: recommendation
+    render status: 201, json: recommendation.thanks.count
   end
 end
