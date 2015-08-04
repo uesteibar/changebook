@@ -31,6 +31,11 @@ Rails.application.routes.draw do
   resources :events, only: [:index]
 
   get "/search", to: "search#search"
-  get "/api/books/search/:term", to: "books#search"
+
+  namespace :api do
+    namespace :v1 do
+      get "search", to: "books#search"
+    end
+  end
 
 end
