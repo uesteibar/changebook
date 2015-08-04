@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     resources :recommendations, only: [:new, :create, :destroy]
   end
 
+  post "/recommendations/:id/thank", to: "thanks#create"
+
   resources :notifications, only: [:index]
   put "/notifications/:id/mark-read", to: "notifications#mark_read"
 

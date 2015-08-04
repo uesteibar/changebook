@@ -10,7 +10,7 @@
       </h3>
       <p>
         <% if book.valoration %>
-          Valoration: <%= book.valoration %>
+          Valoration: <%= book.valoration.round(2) %>
         <% else %>
           No valorations yet.
         <% end %>
