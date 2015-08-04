@@ -51,7 +51,7 @@ $danger_color: #d34c4a;
   margin-right: 1rem;
   border: 1px solid white;
   border-radius: 50%;
-  border-top-color: transparent;
+  border-right-color: transparent;
   border-left-color: transparent;
   animation: loading 0.8s linear infinite;
   transition: 0.5s all;
@@ -74,6 +74,10 @@ $danger_color: #d34c4a;
 .btn-successful:disabled {
   background-color: $base_color;
   opacity: 0.7;
+}
+
+.btn-primary:focus {
+  background-color: $base_color;
 }
 
 @keyframes loading {
