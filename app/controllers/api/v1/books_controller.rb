@@ -2,7 +2,8 @@ module Api
   module V1
     class BooksController < ApplicationController
       def search
-        books = Book.search_offered_by_title(params[:term])
+        limit = params[:limit] || 10
+        books = Book.search_offered_by_title(params[:term], limit)
 
         results = books.map do |book|
           {}.tap do |book_hash|
