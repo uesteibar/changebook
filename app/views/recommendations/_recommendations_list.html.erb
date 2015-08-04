@@ -19,6 +19,9 @@
           <p>
             <%= recommendation.comment %>
           </p>
+          <p>
+            Valoration: <%= recommendation.valoration %>
+          </p>
         </div>
         <div class="row">
           <% if current_user.recommendations.include?(recommendation) %>

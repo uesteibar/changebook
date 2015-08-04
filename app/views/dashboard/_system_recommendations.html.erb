@@ -1,0 +1,23 @@
+<% recommended_books.each do |book| %>
+  <div class="card">
+    <div class="card--thumbnail">
+      <%= image_tag book.cover.url(:square), class: "img-responsive center-block" %>
+    </div>
+
+    <div class="card-content">
+      <h3>
+        <%= link_to book.title, book_path(book) %>
+      </h3>
+      <p>
+        <% if book.valoration %>
+          Valoration: <%= book.valoration %>
+        <% else %>
+          No valorations yet.
+        <% end %>
+      </p>
+      <p>
+        Genre: <%= book.genre.name %>
+      </p>
+    </div>
+  </div>
+<% end %>

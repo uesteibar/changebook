@@ -9,18 +9,19 @@ RSpec.describe RecommendationsController, type: :controller do
     @book = create(:book)
 
     @comment = "I loved it!"
+    @valoration = 50
   end
 
   describe 'create a recommendation' do
     it 'should create a rommendation when all params are given' do
       expect do
-        post :create, book_id: @book.id, recommendation: {comment: @comment}
+        post :create, book_id: @book.id, recommendation: {comment: @comment, valoration: @valoration}
       end.to change(Recommendation, :count).by(1)
     end
 
     it 'should NOT create a rommendation when comment is missing' do
       expect do
-        post :create, book_id: @book.id, recommendation: {comment: ""}
+        post :create, book_id: @book.id, recommendation: {comment: "", valoration: @valoration}
       end.to change(Recommendation, :count).by(0)
     end
   end

@@ -4,6 +4,8 @@ class Book < ActiveRecord::Base
 
   has_many :recommendations
 
+  belongs_to :genre
+
   has_attached_file :cover, styles: {
     thumb: '100x100>',
     square: '200x200#',
@@ -13,7 +15,8 @@ class Book < ActiveRecord::Base
 
   validates_presence_of :title, :author
 
-  after_save :index_elasticsearch
+  after_commit :index_elasticsearch
+  before_destroy :destroy_elasticsearch
 
   def self.search_by_title(title)
     where("UPPER(title) LIKE ?", "%#{title.upcase}%")
@@ -31,10 +34,18 @@ class Book < ActiveRecord::Base
     ownerships.where("to_give_away is true OR to_exchange is true").count
   end
 
+  def valoration
+    recommendations.average(:valoration)
+  end
+
   private
 
   def index_elasticsearch
     BooksElasticsearch.new.index(self)
+  end
+
+  def destroy_elasticsearch
+    BooksElasticsearch.new.destroy(self)
   end
 
 end
