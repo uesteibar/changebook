@@ -2,6 +2,8 @@ class Recommendation < ActiveRecord::Base
   belongs_to :user
   belongs_to :book, touch: true
 
+  has_many :thanks
+
   validates_presence_of :user_id, :book_id, :comment, :valoration
   validate :correct_valoration
 

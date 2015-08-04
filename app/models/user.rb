@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
 
   has_many :liked_genres
 
+  has_many :given_thanks, class_name: 'Thank', primary_key: 'id', foreign_key: 'user_id'
+
   has_many :active_relationships, class_name:  "Following", foreign_key: "follower_id", dependent: :destroy
   has_many :passive_relationships, class_name:  "Following", foreign_key: "followed_id", dependent: :destroy
 
@@ -89,6 +91,12 @@ class User < ActiveRecord::Base
 
   def likes_genre?(genre)
     liked_genres.find_by(genre_id: genre.id).present?
+  end
+
+  def reputation
+    recommendations.inject(0) do |amount, recommendation|
+      amount + recommendation.thanks.count
+    end
   end
 
   def self.search_by_username(term)
