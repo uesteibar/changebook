@@ -1,0 +1,8 @@
+input#user-search {
+  width: 20rem;
+  transition: 0.8s width;
+}
+
+input#user-search:focus {
+  width: 30rem;
+}

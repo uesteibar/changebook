@@ -14,16 +14,20 @@
  *= require_tree .
  *= require_self
  */
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "typeahead";
+
+@import "custom/links";
+@import "custom/button";
 @import "custom/navbar";
 @import "custom/footer";
 @import "custom/card";
 @import "custom/profile";
 
 body {
-  background-color: #f3fff2;
+  background-color: #ededed;
 }
 
 video#bgvid {
