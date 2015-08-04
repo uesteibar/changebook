@@ -1,6 +1,6 @@
 class Thank < ActiveRecord::Base
   belongs_to :user
-  belongs_to :recommendation
+  belongs_to :recommendation, touch: true
 
   validates_presence_of :user_id, :recommendation_id
   validate :different_user
