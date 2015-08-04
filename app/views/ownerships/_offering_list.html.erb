@@ -23,8 +23,12 @@
                     <%= f.submit value: "Delete", class: "btn btn-danger center-block" %>
                   <% end %>
                 <% else %>
-                  <%= form_tag ownership_transfers_path(ownership), method: "post" do %>
-                    <%= submit_tag "I want it" , class: "btn btn-primary center-block" %>
+                  <% if current_user.sent_transfers.find_by(ownership_id: ownership.id) %>
+                    <p>
+                      Transfer request sent. Waiting for response.
+                    </p>
+                  <% else %>
+                    <button data-id="<%= ownership.id %>" type="button" class="btn btn-primary request-transfer center-block" name="button">I want it</button>
                   <% end %>
                 <% end %>
                 <%= link_to "Recommend it", new_book_recommendation_path(ownership.book), class: "btn btn-primary center-block" %>

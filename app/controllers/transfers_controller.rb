@@ -5,7 +5,8 @@ class TransfersController < ApplicationController
     ownership_to_transfer = Ownership.find(params[:ownership_id])
     transfer_request = current_user.request_transfer(ownership_to_transfer)
     TransferRequestMailer.transfer_request_received_mail(transfer_request.ownership.user, transfer_request).deliver_later
-    redirect_to "/"
+    # redirect_to "/"
+    render status: 201, json: transfer_request
   end
 
   def accept
