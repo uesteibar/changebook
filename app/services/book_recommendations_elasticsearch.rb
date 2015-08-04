@@ -19,16 +19,16 @@ class BookRecommendationsElasticsearch
             weight: 1.5
           },
           {
-            filter: {
-                geo_distance: {
-                    distance: "#{distance}km",
-                    locations: location
-                }
+            gauss: {
+              locations: {
+                    origin: location,
+                    scale: "#{distance}km"
+              }
             },
             weight: 2
-          }
-        ]
-      }
+          }],
+          score_mode: "sum"
+        }
       }
     }
   end
