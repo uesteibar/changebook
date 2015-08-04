@@ -19,10 +19,19 @@ class BookRecommendationsElasticsearch
             weight: 1.5
           },
           {
+            field_value_factor: {
+              field: "valoration",
+              factor: 0.05,
+              modifier: "sqrt",
+              missing: 1
+            },
+            weight: 0.5
+          },
+          {
             gauss: {
               locations: {
-                    origin: location,
-                    scale: "#{distance}km"
+                origin: location,
+                scale: "#{distance}km"
               }
             },
             weight: 2
