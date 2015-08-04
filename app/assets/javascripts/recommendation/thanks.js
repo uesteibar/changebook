@@ -6,6 +6,7 @@ $(document).ready(function() {
     var request = $.post('/recommendations/' + recommendationId + '/thank');
     request.done(function(response) {
       $('.thanks-count[data-id=' + recommendationId + ']').text(response + ' thanks');
+      $(event.target).toggle(false);
     });
   });
 });

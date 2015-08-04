@@ -22,6 +22,9 @@
           <p>
             Valoration: <%= recommendation.valoration %>
           </p>
+          <p>
+            <%= render "layouts/recommendation_likes", recommendation: recommendation %>
+          </p>
         </div>
         <div class="row">
           <% if current_user.recommendations.include?(recommendation) %>

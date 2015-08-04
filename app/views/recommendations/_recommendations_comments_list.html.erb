@@ -16,6 +16,9 @@
           <p>
             Valoration: <%= recommendation.valoration %>
           </p>
+          <p>
+            <%= render "layouts/recommendation_likes", recommendation: recommendation %>
+          </p>
         </div>
         <% if recommendations.size > index + 1 %>
           <hr>

@@ -93,6 +93,10 @@ class User < ActiveRecord::Base
     liked_genres.find_by(genre_id: genre.id).present?
   end
 
+  def thanked?(recommendation)
+    given_thanks.where(recommendation_id: recommendation.id).any?
+  end
+
   def reputation
     recommendations.inject(0) do |amount, recommendation|
       amount + recommendation.thanks.count
