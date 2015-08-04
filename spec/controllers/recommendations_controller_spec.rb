@@ -12,11 +12,6 @@ RSpec.describe RecommendationsController, type: :controller do
     @valoration = 50
   end
 
-  after(:each) do
-    Book.destroy_all
-    Ownership.destroy_all
-  end
-
   describe 'create a recommendation' do
     it 'should create a rommendation when all params are given' do
       expect do

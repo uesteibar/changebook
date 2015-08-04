@@ -7,11 +7,6 @@ RSpec.describe NotificationsController, type: :controller do
     sign_in @uesteibar
   end
 
-  after(:each) do
-    Book.destroy_all
-    Ownership.destroy_all
-  end
-
   describe 'GET #index' do
     context 'when the user is logged in' do
       it 'responds successfully with an HTTP 200 status code' do

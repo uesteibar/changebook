@@ -9,11 +9,6 @@ RSpec.describe OwnershipsController, type: :controller do
     @book = create(:book)
   end
 
-  after(:each) do
-    Book.destroy_all
-    Ownership.destroy_all
-  end
-
   describe "GET #new" do
     it "responds successfully with an HTTP 200 status code" do
       get :new

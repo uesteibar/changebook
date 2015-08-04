@@ -12,11 +12,6 @@ RSpec.describe Event, type: :model do
       @book = create(:book)
     end
 
-    after(:each) do
-      Book.destroy_all
-      Ownership.destroy_all
-    end
-
     context 'when recommending a book' do
       it 'should create an event on every follower' do
         expect do

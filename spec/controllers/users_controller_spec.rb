@@ -10,11 +10,6 @@ RSpec.describe UsersController, type: :controller do
     sign_in @user
   end
 
-  after(:each) do
-    Book.destroy_all
-    Ownership.destroy_all
-  end
-
   describe 'GET #show' do
     context 'when the user is logged in' do
       it 'responds successfully with an HTTP 200 status code' do

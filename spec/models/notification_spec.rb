@@ -13,11 +13,6 @@ RSpec.describe Notification, type: :model do
     @alaine.request_transfer(@uesteibar.ownerships.last)
   end
 
-  after(:each) do
-    Book.destroy_all
-    Ownership.destroy_all
-  end
-
   describe 'create' do
     it 'should create a notification when a user rejects your transfer request' do
       expect do

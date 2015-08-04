@@ -10,11 +10,6 @@ RSpec.describe Book, type: :model do
     }
   end
 
-  after(:each) do
-    Book.destroy_all
-    Ownership.destroy_all
-  end
-
   describe 'create' do
     it 'should create a book assigned to a user when all params are given' do
       @user.books.create(@book_params)
