@@ -5,7 +5,9 @@ class User < ActiveRecord::Base
     thumb: '100x100>',
     square: '200x200#',
     medium: '300x300>'
-  }
+  },
+  default_url: "http://thewindowsclub.thewindowsclubco.netdna-cdn.com/wp-content/uploads/2014/02/User-No-Frame.png"
+
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\z/
 
   has_many :ownerships
