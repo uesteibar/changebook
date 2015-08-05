@@ -31,4 +31,19 @@ namespace :seeder do
     end
     puts "DONE!"
   end
+
+  desc "Create a bunch of offerings for demo purposes"
+  task :ownerships => :environment do
+    Ownership.destroy_all
+    times = (Book.count * 10)
+    puts "Creating #{times} offerings"
+    print "."
+    times.times do
+      user = User.all.sample
+      book = Book.all.sample
+      user.ownerships.create(book_id: book.id, to_give_away: true)
+      print "."
+    end
+    puts "DONE!"
+  end
 end
