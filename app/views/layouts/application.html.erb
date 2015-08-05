@@ -82,9 +82,7 @@
     <% end %>
 
         <div class="container app-content">
-          <% if current_user %>
-            <%= render 'layouts/flashes'  %>
-          <% end %>
+          <%= render 'layouts/flashes'  %>
           <%= yield %>
         </div>
 
