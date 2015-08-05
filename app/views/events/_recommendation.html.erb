@@ -1,21 +1,23 @@
 <div class="card card--event row">
-  <div class="card--thumbnail">
-    <%= image_tag item.user.avatar.url(:square), class: "img-responsive center-block" %>
-  </div>
+  <div class="row">
+    <div class=" col-xs-3">
+      <%= image_tag item.user.avatar.url(:square), class: "img-responsive center-block" %>
+    </div>
 
-  <div class="card-content">
-    <p>
-      <%= link_to item.user.username, user_path(item.user) %>
-      recommended
-      <%= link_to item.book.title, book_path(item.book) %>
-      with a valoration of <%= item.valoration %>
-    </p>
-      <p class="lead">
-        "<%= item.comment %>"
+    <div class=" col-xs-9">
+      <p>
+        <%= link_to item.user.username, user_path(item.user) %>
+        recommended
+        <%= link_to item.book.title, book_path(item.book) %>
+        with a valoration of <%= item.valoration %>
       </p>
-      <%= render "layouts/recommendation_likes", recommendation: item %>
-      <p><%= item.created_at.to_formatted_s(:short) %></p>
+        <p class="lead">
+          "<%= item.comment %>"
+        </p>
+        <%= render "layouts/recommendation_likes", recommendation: item %>
+        <p><%= item.created_at.to_formatted_s(:short) %></p>
 
 
+    </div>
   </div>
 </div>

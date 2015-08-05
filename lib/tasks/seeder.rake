@@ -1,7 +1,9 @@
 namespace :seeder do
   desc "Create a bunch of recommendations for demo purposes"
   task :recommendations => :environment do
-    times = (Book.count * 3)
+    Recommendation.destroy_all
+    Event.where("item_urn LIKE 'recommendation%'").destroy_all
+    times = (Book.count * 10)
     puts "Creating #{times} recommendations"
     print "."
     times.times do

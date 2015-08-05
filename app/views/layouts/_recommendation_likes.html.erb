@@ -1,8 +1,8 @@
 
 <div class="thank-container">
     <% if current_user.id != recommendation.user.id && !current_user.thanked?(recommendation) %>
-      <button data-id="<%= recommendation.id %>" type="button" class="btn btn-primary btn-sm thank-recommendation" name="button">Thank!</button>
+      <button data-id="<%= recommendation.id %>" type="button" class="btn btn-primary pull-right btn-sm thank-recommendation" name="button">Thank!</button>
     <% else %>
-      <button data-id="<%= recommendation.id %>" type="button" class="btn btn-primary btn-sm thank-recommendation btn-successful" disabled="true" name="button"><%= pluralize(recommendation.thanks.count, "thank") %></button>
+      <button data-id="<%= recommendation.id %>" type="button" class="btn btn-primary pull-right btn-sm thank-recommendation btn-successful" disabled="true" name="button"><%= pluralize(recommendation.thanks.count, "thank") %></button>
     <% end %>
 </div>
