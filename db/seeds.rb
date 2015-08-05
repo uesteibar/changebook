@@ -1,3 +1,19 @@
+genres = [
+  "Fantasy",
+  "Science Fiction",
+  "Software Development",
+  "Thriller",
+  "Bellic",
+  "Romantic",
+  "History",
+  "Novel",
+  "Languages"
+]
+
+genres.each do |genre|
+  Genre.create(name: genre)
+end
+
 uesteibar = User.create(
   username: "uesteibar",
   email: "uesteibar@gmail.com",
@@ -19,6 +35,13 @@ def create_fake_user
     longitude: Faker::Address.longitude,
   )
   user.confirm
+  3.times do
+    genre = Genre.all
+    unless user.likes_genre?(genre)
+      user.liked_genres << genre
+    end
+  end
+  user.save
 end
 
 100.times do
@@ -31,20 +54,4 @@ end
   unless follower.id == followed.id || follower.following?(followed)
     follower.follow(followed)
   end
-end
-
-genres = [
-  "Fantasy",
-  "Science Fiction",
-  "Software Development",
-  "Thriller",
-  "Bellic",
-  "Romantic",
-  "History",
-  "Novel",
-  "Languages"
-]
-
-genres.each do |genre|
-  Genre.create(name: genre)
 end

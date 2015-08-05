@@ -3,12 +3,12 @@
   <hr>
   <% if recommendations.any? %>
     <% recommendations.each_with_index do |recommendation, index| %>
-      <div class="card--item">
-        <div class="card--thumbnail">
+      <div class="card--item row">
+        <div class="col-xs-3">
           <%= image_tag recommendation.user.avatar.url(:square), class: "img-responsive center-block" %>
         </div>
 
-        <div>
+        <div class="col-xs-9">
           <h3><%= link_to "#{recommendation.user.username}", user_path(recommendation.user) %> said:</h3>
           <p>
             <%= recommendation.comment %>

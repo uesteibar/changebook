@@ -17,7 +17,8 @@ namespace :seeder do
 
   desc "Create a bunch of thanks for demo purposes"
   task :thanks => :environment do
-    times = (Recommendation.count * 5)
+    Thank.destroy_all
+    times = (Recommendation.count * 10)
     puts "Creating #{times} thanks"
     print "."
     times.times do
