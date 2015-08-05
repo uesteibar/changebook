@@ -5,7 +5,9 @@ class User < ActiveRecord::Base
     thumb: '100x100>',
     square: '200x200#',
     medium: '300x300>'
-  }
+  },
+  default_url: "https://s3.amazonaws.com/changebook.s3.amazonaws.com/users/avatars/missing/user-missing.png"
+  
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\z/
 
   has_many :ownerships
