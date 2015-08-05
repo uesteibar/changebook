@@ -1,15 +1,26 @@
 namespace :seeder do
   desc "Create a bunch of recommendations for demo purposes"
   task :recommendations => :environment do
+    recommendations = [
+      {valoration: 90, message: "Loved it! One of the best books I've read this year."},
+      {valoration: 82, message: "This one was really good!"},
+      {valoration: 70, message: "Not bad, it was pretty cool."},
+      {valoration: 50, message: "Not a best seller, but I recommend it if you like the genre."},
+      {valoration: 75, message: "I liked it!"},
+      {valoration: 68, message: "It was as long as good."}
+    ]
+
     Recommendation.destroy_all
+    Thank.destroy_all
     Event.where("item_urn LIKE 'recommendation%'").destroy_all
-    times = (Book.count * 10)
+    times = (Book.count * User.count) / 2
     puts "Creating #{times} recommendations"
     print "."
     times.times do
       user = User.all.sample
       book = Book.all.sample
-      user.recommend(book, Faker::Hacker.say_something_smart, Faker::Number.number(2))
+      recommendation = recommendations.sample
+      user.recommend(book, recommendation[:message], recommendation[:valoration])
       print "."
     end
     puts "DONE!"
@@ -17,8 +28,10 @@ namespace :seeder do
 
   desc "Create a bunch of thanks for demo purposes"
   task :thanks => :environment do
+
+
     Thank.destroy_all
-    times = (Recommendation.count * 10)
+    times = (Recommendation.count * User.count) / 2
     puts "Creating #{times} thanks"
     print "."
     times.times do
