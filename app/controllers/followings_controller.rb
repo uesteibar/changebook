@@ -4,6 +4,7 @@ class FollowingsController < ApplicationController
   def create
     user_to_follow = User.find(params[:id])
     current_user.follow(user_to_follow)
+    user_to_follow.notifications.create(message: "#{current_user.username} followed you.")
     render status: 201, body: "created"
   end
 

@@ -1,10 +1,16 @@
-<% notifications.each do |notification| %>
-    <div class="card">
-      <p class="lead">
-        <%= notification.message %>
-      </p>
-      <%= form_tag "/notifications/#{notification.id}/mark-read", method: "put" do %>
-        <%= submit_tag "Mark as read" , class: "btn btn-danger" %>
-      <% end %>
-    </div>
+<% if notifications.any? %>
+  <% notifications.each do |notification| %>
+      <div class="card">
+        <p class="lead">
+          <%= notification.message %>
+        </p>
+        <%= form_tag "/notifications/#{notification.id}/mark-read", method: "put" do %>
+          <%= submit_tag "Mark as read" , class: "btn btn-danger" %>
+        <% end %>
+      </div>
+  <% end %>
+<% else %>
+  <p class="lead text-center">
+    No notifications left!
+  </p>
 <% end %>

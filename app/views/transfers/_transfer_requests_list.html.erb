@@ -1,20 +1,27 @@
-<% transfer_requests.each do |request| %>
-    <div class="card">
-      <p>
-        <%= link_to request.user.username, user_path(request.user) %>
-        requested you to transfer
-        <%= link_to request.ownership.book.title, book_path(request.ownership.book) %>
-      </p>
+<% if transfer_requests.any? %>
+  <% transfer_requests.each do |request| %>
+      <div class="card">
+        <p>
+          <%= link_to request.user.username, user_path(request.user) %>
+          requested you to transfer
+          <%= link_to request.ownership.book.title, book_path(request.ownership.book) %>
+        </p>
 
-      <p>
-        <%= link_to "Email this user", "mailto:#{request.user.email}" %>
-      </p>
+        <p>
+          <%= link_to "Email this user", "mailto:#{request.user.email}" %>
+        </p>
 
-      <%= form_tag "/transfers/#{request.id}/accept", method: "put" do %>
-        <%= submit_tag "Accept" , class: "btn btn-primary" %>
-      <% end %>
-      <%= form_tag transfer_path(request), method: "delete" do %>
-        <%= submit_tag "Reject" , class: "btn btn-danger" %>
-      <% end %>
-    </div>
+        <%= form_tag "/transfers/#{request.id}/accept", method: "put" do %>
+          <%= submit_tag "Accept" , class: "btn btn-primary" %>
+        <% end %>
+        <%= form_tag transfer_path(request), method: "delete" do %>
+          <%= submit_tag "Reject" , class: "btn btn-danger" %>
+        <% end %>
+      </div>
+  <% end %>
+
+<% else %>
+  <p class="lead text-center">
+    No pending transfer requests
+  </p>
 <% end %>
