@@ -23,9 +23,26 @@
           <span aria-hidden="true" class="glyphicon glyphicon-map-marker"></span>
           <%= @user.location %>
         </p>
-        <p class="text-center">
-          Reputation: <%= @user.reputation %>
-        </p>
+        <div class="row">
+          <div class="col-xs-4">
+            <p class="text-center">Reputation</p>
+            <h3 class="text-center">
+            <%= @user.reputation %>
+          </h3>
+          </div>
+          <div class="col-xs-4">
+            <p class="text-center">Following</p>
+            <h3 class="text-center">
+            <%= @user.following.count %>
+          </h3>
+          </div>
+          <div class="col-xs-4">
+            <p class="text-center">Followers</p>
+            <h3 class="text-center">
+            <%= @user.followers.count %>
+          </h3>
+          </div>
+        </div>
 
         <p class="text-center">
           <%= link_to "Email me!", "mailto:#{@user.email}" %>
