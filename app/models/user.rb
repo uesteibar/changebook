@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
     square: '200x200#',
     medium: '300x300>'
   },
-  default_url: "https://s3.amazonaws.com/changebook.s3.amazonaws.com/users/avatars/missing/user-missing.png"
-  
+  default_url: "http://thewindowsclub.thewindowsclubco.netdna-cdn.com/wp-content/uploads/2014/02/User-No-Frame.png"
+
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\z/
 
   has_many :ownerships
