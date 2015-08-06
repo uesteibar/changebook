@@ -14,6 +14,19 @@
           <span aria-hidden="true" class="glyphicon glyphicon-map-marker"></span>
           <%= ownership.user.location %>
         </p>
+        <% if current_user.id == ownership.user.id %>
+          <%= form_for [current_user, ownership], method: :delete do |f| %>
+            <%= f.submit value: "Delete", class: "btn btn-danger center-block" %>
+          <% end %>
+        <% else %>
+          <% if current_user.sent_transfers.find_by(ownership_id: ownership.id) %>
+            <p>
+              Transfer request sent. Waiting for response.
+            </p>
+          <% else %>
+            <button data-id="<%= ownership.id %>" type="button" class="btn btn-primary request-transfer" name="button">I want it</button>
+          <% end %>
+        <% end %>
       </div>
       <% if ownerships.size > index + 1 %>
         <hr>
