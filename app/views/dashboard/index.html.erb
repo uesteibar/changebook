@@ -5,7 +5,11 @@
     <%= render "system_recommendations", recommended_books: @system_recommendations %>
   </div>
   <div class="col-md-6">
-    <h3 class="text-center">Last events</h3>
-    <%= render "events/events", events: @events %>
+      <h3 class="text-center">Last events</h3>
+      <%= render "events/events", events: @events %>
+    <% if @users_to_follow.any? %>
+      <p class="lead text-center">It feels lonely, follow some people!</p>
+      <%= render "users/users_to_follow", users: @users_to_follow %>
+    <% end %>
   </div>
 </div>

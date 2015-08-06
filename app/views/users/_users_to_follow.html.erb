@@ -1,0 +1,17 @@
+<% users.each do |user| %>
+  <div class="card card--event row">
+    <div class="row">
+      <div class=" col-xs-3">
+        <%= image_tag user.avatar.url(:square), class: "img-responsive center-block" %>
+      </div>
+
+      <div class=" col-xs-9">
+        <h3><%= link_to "#{user.username}", user_path(user) %></h3>
+        <p>
+          Reputation: <%= user.reputation %>
+        </p>
+        <button data-id="<%= user.id %>" type="button" class="btn btn-primary follow-user" name="button">Follow</button>
+      </div>
+    </div>
+  </div>
+<% end %>
