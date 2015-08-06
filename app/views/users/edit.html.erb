@@ -30,15 +30,18 @@
     </div>
 
     <div class="card">
-      <select id="genres-selection" data-user-id="<%= current_user.id %>" multiple="multiple">
-        <% Genre.all.each do |genre| %>
-          <% if current_user.likes_genre?(genre) %>
-              <option selected="selected" value="<%= genre.id %>"><%= genre.name %></option>
-            <% else %>
-              <option value="<%= genre.id %>"><%= genre.name %></option>
+      <label for="">Select the genres you like</label>
+      <div class="">
+        <select id="genres-selection" data-user-id="<%= current_user.id %>" multiple="multiple">
+          <% Genre.all.each do |genre| %>
+            <% if current_user.likes_genre?(genre) %>
+                <option selected="selected" value="<%= genre.id %>"><%= genre.name %></option>
+              <% else %>
+                <option value="<%= genre.id %>"><%= genre.name %></option>
+            <% end %>
           <% end %>
-        <% end %>
-    </select>
+      </select>
+      </div>
 
     <button id="update-genres" type="button" class="btn btn-primary float-right" name="button">Update</button>
     </div>
