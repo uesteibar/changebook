@@ -36,7 +36,7 @@ class Book < ActiveRecord::Base
 
   def valoration
     recommendations.inject(0) do |amount, recommendation|
-      amount + (recommendation.valoration * (recommendation.user.reputation.to_f / 100))
+      amount + (recommendation.valoration * (recommendation.user.reputation.to_f / 1000))
     end
   end
 

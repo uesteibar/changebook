@@ -14,10 +14,13 @@
             <%= pluralize(@book.offerings_count, "user") %> offer this book.
           </p>
           <p>
+            <span class="label label-default"><%= @book.genre.name %></span>
+          </p>
+          <p>
             <% if @book.valoration %>
-              Valoration: <%= @book.valoration.round(2) %>
+              Rating: <%= @book.valoration.round(2) %>
             <% else %>
-              No valorations yet.
+              No ratings yet.
             <% end %>
           </p>
           <div class="center-block">

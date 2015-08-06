@@ -10,13 +10,13 @@
       </h3>
       <p>
         <% if book.valoration %>
-          Valoration: <%= book.valoration.round(2) %>
+          Rating: <%= book.valoration.round(2) %>
         <% else %>
-          No valorations yet.
+          No ratings yet.
         <% end %>
       </p>
       <p>
-        Genre: <%= book.genre.name %>
+        <span class="label label-default"><%= book.genre.name %></span>
       </p>
     </div>
   </div>
