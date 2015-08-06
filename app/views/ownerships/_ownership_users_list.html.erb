@@ -3,12 +3,12 @@
   <hr>
   <% if ownerships.any? %>
     <% ownerships.each_with_index do |ownership, index| %>
-    <div class="card--item">
-      <div class="card--thumbnail">
+    <div class="card--item row">
+      <div class="col-xs-3">
         <%= image_tag ownership.user.avatar.url(:square), class: "img-responsive center-block" %>
       </div>
 
-      <div>
+      <div class="col-xs-9">
         <h3><%= link_to "#{ownership.user.username}", user_path(ownership.user) %></h3>
         <p>
           <span aria-hidden="true" class="glyphicon glyphicon-map-marker"></span>
