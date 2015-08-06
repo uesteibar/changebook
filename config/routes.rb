@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       get "books", to: "books#index"
       get "books/search", to: "books#search"
+      get "books/complex_search", to: "books#search_complex"
     end
   end
 
