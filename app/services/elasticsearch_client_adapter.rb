@@ -8,11 +8,11 @@ class ElasticsearchClientAdapter
     @index = index
   end
 
-  def search(type:, body:, size:)
+  def search(type: type, body: body, size: size)
     @client.search index: @index, type: type, size: size, body: body
   end
 
-  def index(type:, id:, body:)
+  def index(type: type, id: id, body: body)
     @client.index index: @index, type: type, id: id, body: body
   end
 end
