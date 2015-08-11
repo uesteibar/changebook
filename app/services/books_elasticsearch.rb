@@ -34,9 +34,9 @@ class BooksElasticsearch
         }
       }
     }
-    results["hits"]["hits"].map do |result|
-      Book.find(result["_id"])
-    end
+    
+    ids = results["hits"]["hits"].map { |hit| hit["_id"] }
+    Book.find(ids)
   end
 
   def destroy(book)
