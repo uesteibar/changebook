@@ -2,6 +2,8 @@
 
 Final project at the Ironhack Web Development Bootcamp.
 
+[Check it live here](http://changebook.herokuapp.com)
+
 Instructions to make it run:
 
 clone the project
