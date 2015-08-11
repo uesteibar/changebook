@@ -1,16 +1,11 @@
 class BooksElasticsearch
   def initialize
-    if ENV['SEARCHBOX_SSL_URL']
-      @client = Elasticsearch::Client.new host: ENV['SEARCHBOX_SSL_URL']
-    else
-      @client = Elasticsearch::Client.new log: true
-    end
-    @index = "book"
+    @client = ElasticsearchClientAdapter.new("book")
     @type = "books"
   end
 
   def index(book)
-    @client.index  index: @index, type: @type, id: book.id, body: {
+    @client.index type: @type, id: book.id, body: {
       title: book.title,
       author: book.author,
       genre_id: book.genre.id,
@@ -23,7 +18,7 @@ class BooksElasticsearch
   end
 
   def search(term, limit = 10)
-    results = @client.search index: @index, type: @type, size: limit, body: { query:
+    results = @client.search type: @type, size: limit, body: { query:
       {
         bool: {
           should: [
@@ -34,9 +29,9 @@ class BooksElasticsearch
         }
       }
     }
-    results["hits"]["hits"].map do |result|
-      Book.find(result["_id"])
-    end
+
+    ids = results["hits"]["hits"].map { |hit| hit["_id"] }
+    Book.find(ids)
   end
 
   def destroy(book)
